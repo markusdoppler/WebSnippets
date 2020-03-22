@@ -7,6 +7,9 @@ body {
 
 body.snippets {
 	background: #050620;
+	background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
   color: #ecf0f1;
   font-size: 1.5em;
 }

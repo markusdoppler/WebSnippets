@@ -1,6 +1,6 @@
 # Snippets
 
-Here I collect snippets of website elements that might prove useful.
-Most of the just use HTML5, CSS3 and JavaScript (and perhaps JQuery or VueJS).
+Here I collect snippets of fun and useful website elements.
+Most of the just use just HTML5, CSS3 and Vanilla JavaScript.
 
-They can be found under [this link](https://markusdoppler.github.io/Snippets).
+They can be found under [https://markusdoppler.github.io/Snippets](https://markusdoppler.github.io/Snippets).
