@@ -88,6 +88,7 @@ li {
 .outline-button:hover {
   background-color: #77AF69;
   border: 1px solid #77AF69;
+  color: black;
 }
 
 /*   Outline Button Light    */
