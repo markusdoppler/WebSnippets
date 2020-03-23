@@ -28,6 +28,10 @@ h1 {
   padding-bottom: 40px;
 }
 
+p {
+	margin-bottom: 1em;
+}
+
 ul {
   list-style: none;
 }

@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Markus Doppler | Darkmode Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="darkmode.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+    <div class="hero">
+      <header class="header-bar">
+				<div class="logo">
+					<img src="../assets/peacock-100.png" class="logo">
+					<span class="logo-text">Logo</span>
+				</div>
+        <div class="darkmode-component">
+          <input type="checkbox" id="darkmode-input">
+          <label class="darkmode-toggle" for="darkmode-input">
+            <div class="darkmode-toggle-slider"></div>
+          </label>
+        </div>
+      </header>
+			<section class="hero-text">
+				<h1>Darkmode <span id="darkmode-on-off"></span></h1>
+				<p>Click the slider on the top right to toggle darkmode.</p>
+				<p>Your browser prefers a <span id="darkmode-default"></span> colour scheme by default.</p>
+			</section>
+    </div>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+		<script src="darkmode.js"></script>
+	</body>
+</html>
