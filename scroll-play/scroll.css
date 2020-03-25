@@ -6,7 +6,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "controls header   ."
+    ". header   ."
     "main   main     main  ";
   /*"footer footer   footer";*/
   height: 100%;
@@ -15,9 +15,6 @@ body {
 
 .heading {
   grid-area: header;
-}
-.controls {
-  grid-area: controls;
 }
 .hero {
   grid-area: main;
@@ -43,7 +40,7 @@ button {
   text-decoration: none;
   transition: all 0.3s ease-out;
   cursor: pointer;
-  font-size: 1.0em;
+  font-size: 0.8em;
   font-weight: 600;
 }
 button:hover {
@@ -51,6 +48,9 @@ button:hover {
   border: 1px solid #ca8888;
 }
 
+label {
+  margin-left: 20px;
+}
 
 
 
@@ -59,24 +59,32 @@ button:hover {
   margin-top: 0;
 }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(10,1fr);
+  grid-template-rows: repeat(10,1fr);
+  height: 800px;
 }
 
 h3 {
-  padding: 20px;
+  padding-top: 40px;
+  grid-area: 1 / 4 / 2 / 8;
 }
 
+.lorem {
+  grid-area: 2 / 4 / 4 / 8;
+}
+.lorem2 {
+  grid-area: 5 / 4 / 10 / 8;
+}
 
+.controls {
+  grid-area: 4/4 / 5/8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .circle {
   position: relative;
@@ -84,40 +92,49 @@ h3 {
   height: 200px;
   border: 10px solid rgba(0,0,0,0.4);
   border-radius: 100%;
+  /* transition: all 0.1s linear; */
 }
+#circle1 {
+  grid-row: 4 / 8;
+  grid-column: 2 / 6;
+}
+#circle2 {
+  grid-row: 7 / 11;
+  grid-column: 7 / 11;
+}
+
+
 .leaf {
   position: relative;
   width: 400px;
   height: 400px;
   background-size: contain;
   background-repeat: no-repeat;
-}
-
-#circle1 {
-  top: -60px;
-  left: 200px;
-}
-#circle2 {
-  top: -200px;
-  left: -100px;
+  transition: all 0.3s ease-out;
 }
 #leaf1 {
   background-image: url(../assets/maple-tilted.png);
-  top: -300px;
-  left: -100px;
+  grid-row: 4 / 8;
+  grid-column: 4 / 8;
 }
 #leaf2 {
   background-image: url(../assets/maple_yellow.png);
+  grid-row: 4 / 8;
+  grid-column: 4 / 8;
 }
 #leaf3 {
   background-image: url(../assets/leaf.png);
   width: 150px;
   height: 150px;
+  grid-row: 4 / 8;
+  grid-column: 4 / 8;
 }
 #leaf4 {
   background-image: url(../assets/oak.png);
   width: 250px;
   height: 250px;
+  grid-row: 4 / 8;
+  grid-column: 4 / 8;
 }
 
 

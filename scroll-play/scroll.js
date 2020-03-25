@@ -1,63 +1,32 @@
-/*
-
-* Events
-scroll / onscroll
-wheel / onwheel    -- triggered whenever a user scrolls the page with a mouse wheel or a touchpad
-
-
-
-* Properties
-const scrollTop  = window.scrollY;
-const scrollLeft = window.scrollX;
-
-
-
-* Functions
-element.scrollIntoView();
-element.scroll(x-coord, y-coord)
-element.scrollBy(x-coord, y-coord);
-element.scrollTo(x-coord, y-coord)
-
-
-* Check if element is in viewport
-window.addEventListener('scroll', () => {
-  const rect = elem.getBoundingClientRect();
-  const inViewport = rect.bottom > 0 && rect.right > 0 &&
-                     rect.left < window.innerWidth &&
-                     rect.top < window.innerHeight;
-});
-*/
-
 let slidingObject = {
+	template: '#sliding-object-template',
 	data() {
 		return {
 			positionX: 0,
-	    positionY: 0,
-			deltaX: 0,
-			deltaY: 0,
-			slowFactorX: 1,
-			slowFactorY: 1,
-			scrollY: 0
+			positionY: 0,
+			deltaX: 1,
+			deltaY: 1
 		}
 	},
+	props: ['id', 'scrollChange', 'direction', 'smoothTransitioning'],
 	created: function () {
-		this.positionX = document.getElementById("leaf1").getBoundingClientRect().left;
-		this.positionY = document.getElementById("leaf1").getBoundingClientRect().top;
-	},
-	methods: {
-		updatePosition: function (scrollY) {
-			var scrollDelta = scrollY - this.scrollY;
-			this.positionX += -scrollDelta/this.slowFactorX;
-			this.positionY += -scrollDelta/this.slowFactorY;
-			this.scrollY = scrollY;
-		}
+		this.positionX = document.getElementById(this.id).getBoundingClientRect().left;
+		this.positionY = document.getElementById(this.id).getBoundingClientRect().top;
 	},
 	computed: {
-		shiftTop() {
-			return this.positionY + this.deltaY;
+		shiftLeft: function() {
+			return this.positionX + this.direction.x*this.scrollChange;
 		},
-		shiftLeft() {
-			return this.positionX + this.deltaX;
+		shiftTop: function() {
+			return this.positionY + this.direction.y*this.scrollChange;
+		},
+		slidingStyle: function() {
+			return {
+				position: 'fixed',
+				top: this.shiftTop+'px',
+				left: this.shiftLeft+'px',
+				transition: this.smoothTransitioning ? 'all 0.3s linear' : 'none'
+			};
 		}
 	}
 };
@@ -65,8 +34,34 @@ let slidingObject = {
 
 var slideRoom = new Vue({
 	el: "#slideRoom",
+	data: {
+		lastScrollYPosition: 0,
+		scrollChange: 0,
+		slowFactor: 1,
+		smoothTransitioning: false
+	},
 	components: {
 		slidingObject: slidingObject
+	},
+	created () {
+		window.addEventListener('scroll', this.updatePosition);
+	},
+	destroyed () {
+		window.removeEventListener('scroll', this.updatePosition);
+	},
+	methods: {
+		updatePosition() {
+			var scrollY = window.scrollY;
+			var scrollDelta = scrollY - this.lastScrollYPosition;
+			this.scrollChange += -scrollDelta/this.slowFactor;
+			this.lastScrollYPosition = scrollY;
+		},
+		shoveAside() {
+			this.scrollChange += -100;
+		},
+		shoveBack() {
+			this.scrollChange += +100;
+		}
 	}
 });
 
@@ -86,7 +81,7 @@ $(window).scroll(function(event){
 
 	$('#scrollXY').text("↔︎ " + scrollX + " / ↕︎ " + + scrollY);
 
-	slideRoom.updatePosition(scrollY);
+	//slideRoom.updatePosition(scrollY);
 
 });
 
