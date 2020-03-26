@@ -43,6 +43,10 @@ h1 {
   padding-bottom: 40px;
 }
 
+.snippets h2 {
+	margin-top: 80px;
+}
+
 p {
 	margin-bottom: 1em;
 }
