@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Markus Doppler | Colour Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="colours.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+		<section id="colour-board">
+
+			<h1>Material Colours</h1>
+			<colour-item colour-code="#ecf0f1" @copy="copyColourCode">blueish white</colour-item>
+			<colour-item colour-code="#f4e04d" @copy="copyColourCode">yellow</colour-item>
+			<colour-item colour-code="#4FC08D" @copy="copyColourCode">easter green</colour-item>
+			<colour-item colour-code="rgba(79,192,141,0.5)" @copy="copyColourCode">easter green alpha</colour-item>
+			<colour-item colour-code="#121314" @copy="copyColourCode">off-black</colour-item>
+			<colour-item colour-code="#050620" @copy="copyColourCode">dark purple</colour-item>
+
+			<h1>Forest Colours</h1>
+			<colour-item colour-code="#619765" @copy="copyColourCode">green 1</colour-item>
+			<colour-item colour-code="#558e47" @copy="copyColourCode">green 2</colour-item>
+			<colour-item colour-code="#1b4b2c" @copy="copyColourCode">green 3</colour-item>
+			<colour-item colour-code="#9c7764" @copy="copyColourCode">brown 1</colour-item>
+			<colour-item colour-code="#835e4b" @copy="copyColourCode">brown 2</colour-item>
+			<colour-item colour-code="#64493b" @copy="copyColourCode">brown 3</colour-item>
+			<colour-item colour-code="#ffd887" @copy="copyColourCode">yellow 1</colour-item>
+			<colour-item colour-code="#f1b735" @copy="copyColourCode">yellow 2</colour-item>
+			<colour-item colour-code="#ffdeb7" @copy="copyColourCode">rose</colour-item>
+			<colour-item colour-code="#903428" @copy="copyColourCode">dark red</colour-item>
+
+
+			<h1>Grayscale Colours</h1>
+			<colour-item colour-code="#fafafa" @copy="copyColourCode">gray 0</colour-item>
+			<colour-item colour-code="#eaeaea" @copy="copyColourCode">gray 1</colour-item>
+			<colour-item colour-code="#aaaaaa" @copy="copyColourCode">gray 2</colour-item>
+			<colour-item colour-code="#818181" @copy="copyColourCode">gray 3</colour-item>
+			<colour-item colour-code="#595959" @copy="copyColourCode">gray 4</colour-item>
+
+
+			<h1>Flower Colours</h1>
+			<colour-item colour-code="" @copy="copyColourCode"></colour-item>
+
+		</section>
+
+		<script type="text/x-template" id="colour-item-template">
+			<div class="colour" :style="colourStyle" @click="select">
+				<div class="colour-opacity" v-if="opacity < 1.0">{{opacity}}</div>
+				<span class="colour-value">{{hexCode}}</span>
+				<span class="colour-description"><slot></slot></span>
+			</div>
+		</script>
+
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="colours.js" type="text/javascript"></script>
+	</body>
+</html>

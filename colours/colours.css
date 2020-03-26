@@ -1,0 +1,57 @@
+body {
+  background-color: white;
+}
+
+#colour-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 60px;
+}
+
+
+
+
+.colour {
+  position: relative;
+	margin: 10px;
+	padding: 25px 50px;
+  border-radius: 15px;
+	background-color: #eeeeee;
+	text-align: center;
+	cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.colour-value {
+	padding: 5px;
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.5);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  text-transform: uppercase;
+}
+.colour-description {
+  padding-top: 8px;
+  font-size: 0.5em;
+  color: rgba(0,0,0,0.5);
+  color: #FFFFFF;
+}
+.colour-opacity {
+  position: absolute;
+  font-size: 0.7em;
+  top: 10px;
+  right: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+	.colour {
+		width: 90%;
+		margin: 10px 1%;
+	}
+}
