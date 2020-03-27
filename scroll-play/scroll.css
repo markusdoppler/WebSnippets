@@ -1,6 +1,9 @@
 body {
-  background: #ecf0f1;
-  color: #050620;
+  background: #050620;
+  background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  color: #ecf0f1;
   transition: all 0.3s ease-out;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -34,9 +37,10 @@ p, li, a {
 button {
   padding: 5px;
   margin: 5px;
-  background-color: transparent;
-  border: 1px solid #050620;
   border-radius: 5px;
+  border: 1px solid #ecf0f1;
+  background-color: transparent;
+  color: #ecf0f1;
   text-decoration: none;
   transition: all 0.3s ease-out;
   cursor: pointer;
