@@ -1,0 +1,28 @@
+li {
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark {
+  background-color: #050620;
+  color: #ecf0f1;
+}
+
+/****************************************************
+                        HEADINGS
+*****************************************************/
+
+.banded span {
+  background: #050620;
+  color: #ecf0f1;
+  line-height: 2em;
+}
+
+.lorem {
+  margin: 0px auto;
+  width: 70%;
+  line-height: 1.2em;
+}

@@ -57,6 +57,9 @@ li {
   text-decoration: none;
   position: relative;
 }
+.rectangle-link:hover {
+  color: black;
+}
 .rectangle-link:after {
   content: "";
   position: absolute;
