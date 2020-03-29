@@ -1,0 +1,35 @@
+body {
+  background: #050620;
+  background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  color: #ecf0f1;
+  transition: all 0.3s ease-out;
+  height: 100vh;
+  width: 100%;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signature {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: dash 4s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
