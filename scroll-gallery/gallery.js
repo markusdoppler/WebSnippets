@@ -9,7 +9,7 @@
 	[*]	Scroll left and right
 	[ ]	scroll manually, when stopping --> scroll to nearest galleryView
 	[ ] animate scroll
-	[ ]	
+	[ ]
 
 */
 
@@ -93,7 +93,7 @@ new Vue({
 		},
 		galleryStyle() {
 			return {
-				width: this.documentClientSize.width*this.galleryViewCount
+				width: (this.documentClientSize.width > 700) ? this.documentClientSize.width*this.galleryViewCount : '100%'
 			}
 		}
 	}

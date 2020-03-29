@@ -47,57 +47,66 @@ h1 {
   /* border: 10px solid #993333; */
 }
 
-#gallery {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
 #gallery:focus {
   outline: none;
 }
 
 .gallery-view {
-  height: 100%;
-  width: 100%;
-  /* border: 1px solid white; */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 5%;
 }
 
-
 .left-navigation, .right-navigation {
-  position: fixed;
+  display: none;
+}
 
 
-  font-size: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 70px;
-  height: 70px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 100%;
-  cursor: pointer;
+
+
+@media only screen and (min-width: 700px) {
+  #gallery {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .gallery-view {
+    height: 100%;
+    width: 100%;
+  }
+
+  .left-navigation, .right-navigation {
+    position: fixed;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 100%;
+    cursor: pointer;
+  }
+  .left-navigation:hover, .right-navigation:hover {
+    background: rgba(255,255,255,0.5);
+  }
+  .left-navigation {
+    left: 20px;
+  }
+  .right-navigation {
+    right: 20px;
+  }
+  .navigation-disabled {
+    cursor: auto;
+    opacity: 0.2;
+  }
+  .navigation-disabled:hover {
+    background: rgba(255,255,255,0.2);
+  }
 }
-.left-navigation:hover, .right-navigation:hover {
-  background: rgba(255,255,255,0.5);
-}
-.left-navigation {
-  left: 20px;
-}
-.right-navigation {
-  right: 20px;
-}
-.navigation-disabled {
-  cursor: auto;
-  opacity: 0.2;
-}
-.navigation-disabled:hover {
-  background: rgba(255,255,255,0.2);
-}
+
 
 
 
