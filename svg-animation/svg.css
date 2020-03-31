@@ -22,10 +22,36 @@ p {
   align-items: center;
 }
 
-.signature {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: dash 4s linear forwards;
+
+.hello .path1 {
+  stroke-dasharray: 270;
+  stroke-dashoffset: 270;
+  animation: dash 0.25s linear forwards;
+  animation-delay: 0.2s;
+}
+.hello .path2 {
+  stroke-dasharray: 265;
+  stroke-dashoffset: 265;
+  animation: dash 0.25s linear forwards;
+  animation-delay: 0.55s;
+}
+.hello .path3 {
+  stroke-dasharray: 205;
+  stroke-dashoffset: 205;
+  animation: dash 0.2s linear forwards;
+  animation-delay: 0.8s;
+}
+.hello .path4 {
+  stroke-dasharray: 1340;
+  stroke-dashoffset: 1340;
+  animation: dash 1.25s linear forwards;
+  animation-delay: 1.05s;
+}
+.hello .path5 {
+  stroke-dasharray: 221;
+  stroke-dashoffset: 221;
+  animation: dash 0.2s linear forwards;
+  animation-delay: 2.4s;
 }
 
 @keyframes dash {
