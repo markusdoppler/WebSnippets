@@ -1,0 +1,139 @@
+body {
+  /* background: #ecf0f1;
+  color: #050620; */
+  background: #050620;
+  background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  color: #ecf0f1;
+  border-bottom: none;
+  transition: all 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+p, li, a {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.hero {
+  max-width: 700px;
+  min-height: 1000px;
+}
+
+.circle-container {
+  display: flex;
+  justify-content: space-between;
+}
+.circle-spot {
+  border: 1px solid white;
+  border-radius: 100%;
+}
+
+.circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 10px solid rgba(0,0,0,0.4);
+  border-radius: 100%;
+  /*transition: all 0.1s linear;*/
+}
+
+
+/* use Leaves instead of circles */
+/* .circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#circle1 {
+  width: 400px;
+  height: 400px;
+  background-image: url(../assets/maple-tilted.png);
+}
+#circle2 {
+  background-image: url(../assets/oak.png);
+}
+ */
+
+.repelled-object {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+.tiny {
+  font-size: 0.75em;
+}
+.ptop {
+  padding-top: 0.5em;
+  color: #993333;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.info-description {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.scroll-info {
+  padding-left: 15px;
+  padding-bottom: 5px;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.screen-info {
+  padding-bottom: 5px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.mouse-info {
+  padding-right: 15px;
+  padding-bottom: 5px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#mouseXY {
+  text-align: right;
+}
+/* #mouse-pointer {
+  position: fixed;
+  height: 20px;
+  width: 20px;
+  background: #993333;
+  border-radius: 100%;
+  left: 0;
+  top: 0;
+} */
+#scroll-pointer {
+  position: fixed;
+  height: 40px;
+  width: 40px;
+  background: #333399;
+  border-radius: 100%;
+  left: 0;
+  top: 0;
+}
