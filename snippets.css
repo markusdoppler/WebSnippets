@@ -44,6 +44,12 @@ h1 {
   padding-top: 40px;
   padding-bottom: 40px;
 }
+h2 {
+  text-align: center;
+  font-size: 1.8em;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 
 .snippets h2 {
 	margin-top: 80px;
