@@ -11,18 +11,31 @@ li {
   color: #ecf0f1;
 }
 
+.lorem {
+  margin: 0px auto;
+  width: 70%;
+  line-height: 1.2em;
+}
+
+
 /****************************************************
                         HEADINGS
 *****************************************************/
 
+/* Banded Heading */
 .banded span {
   background: #050620;
   color: #ecf0f1;
   line-height: 2em;
 }
 
-.lorem {
-  margin: 0px auto;
-  width: 70%;
-  line-height: 1.2em;
+
+/* Letter Heading */
+.letter span {
+  padding: 0.1em 0.3em;
+  margin-left: 0.2em;
+  border-radius: 0.2em;
+  background: rgba(255,255,255,1.0);
+  color: #050620;
+  text-transform: uppercase;
 }
