@@ -23,6 +23,7 @@ p, li, a {
 
 .hero {
   max-width: 700px;
+  min-height: 1000px;
 }
 
 .circle-container {
@@ -40,18 +41,23 @@ p, li, a {
   height: 200px;
   border: 10px solid rgba(0,0,0,0.4);
   border-radius: 100%;
-  transition: all 0.1s linear;
-  /* background-size: contain;
-  background-repeat: no-repeat; */
+  /* transition: all 0.1s linear; */
+}
+
+/* use Leaves instead of circles
+.circle
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 #circle1 {
-  /* width: 400px;
+  width: 400px;
   height: 400px;
-  background-image: url(../assets/maple-tilted.png); */
+  background-image: url(../assets/maple-tilted.png);
 }
 #circle2 {
-  /* background-image: url(../assets/oak.png); */
+  background-image: url(../assets/oak.png);
 }
+*/
 
 .repelled-object {
   display: flex;
@@ -59,6 +65,13 @@ p, li, a {
   justify-content: center;
   align-items: center;
   /* border: 1px solid red; */
+}
+.tiny {
+  font-size: 0.75em;
+}
+.ptop {
+  padding-top: 0.5em;
+  color: #993333;
 }
 
 footer {

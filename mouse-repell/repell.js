@@ -9,14 +9,12 @@ Vue.directive('mousemove', {
   }
 })
 
-
 let repelledObject = {
-// Vue.component({
 	template: '#repelled-object-template',
 	data() {
 		return {
-			documentClientSize: {width: 0, height: 0},
-			boundingClientRect: {top: 0, right: 0, bottom: 0, left: 0, x:0, y: 0, width: 0, height: 0},
+      documentClientSize: {width: 0, height: 0},
+			boundingClientRect: {top: 0, right: 0, bottom: 0, left: 0, width: 0, height: 0},
 			displacement: {x: 0, y: 0}
 		}
 	},
@@ -27,14 +25,21 @@ let repelledObject = {
 
 		this.boundingClientRect = document.getElementById(this.id).getBoundingClientRect();
 	},
+  watch: {
+    mousePosition: function (val) {
+      this.boundingClientRect = document.getElementById(this.id).getBoundingClientRect();
+    }
+  },
 	methods: {
-
+    updateMousePosition(mousePosition) {
+      this.mousePosition = mousePosition;
+    }
 	},
 	computed: {
 		center() {
 			return {
-				x: this.boundingClientRect.x + this.boundingClientRect.width/2 + this.displacement.x,
-				y: this.boundingClientRect.y + this.boundingClientRect.height/2 + this.displacement.y
+				x: this.boundingClientRect.left + this.boundingClientRect.width/2,
+				y: this.boundingClientRect.top + this.boundingClientRect.height/2
 			}
 		},
 		distance() {
@@ -50,11 +55,8 @@ let repelledObject = {
 					x: this.distance.x/this.distance.abs,
 					y: this.distance.y/this.distance.abs
 				}
-
-				// this.displacement.x = - unitDistanceVector.x * 50*Math.log(this.distance.abs)
-				// this.displacement.y = - unitDistanceVector.y * 50*Math.log(this.distance.abs)
-				this.displacement.x = - unitDistanceVector.x * 5000**2/this.distance.abs**2
-				this.displacement.y = - unitDistanceVector.y * 5000**2/this.distance.abs**2
+        this.displacement.x -= unitDistanceVector.x * 1000**2/this.distance.abs**2 + 0.01 * this.displacement.x
+				this.displacement.y -= unitDistanceVector.y * 1000**2/this.distance.abs**2 + 0.01 * this.displacement.y
 				this.displacement.abs = Math.sqrt(this.displacement.x**2 + this.displacement.y**2)
 				return {
 					'left': `${this.displacement.x}`,
@@ -70,13 +72,13 @@ let repelledObject = {
 var scrollRoom = new Vue({
 	el: "#mouse-room",
 	data: {
-		mousePosition: {x:0, y:0},
+    mousePosition: {x: 0, y: 0}
 	},
 	components: {
 		repelledObject
 	},
 	methods: {
-		updateMousePosition: function (evt, el) {
+    updateMousePosition: function (evt, el) {
 			// if (window.scrollY > 50) {
 			// 	el.setAttribute(
 			// 		'style',

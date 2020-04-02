@@ -49,12 +49,16 @@
 
 		<script type="text/x-template" id="repelled-object-template">
 			<div class="repelled-object" :id="id" :style="repelledStyle">
-				<span class="">{{`width: ${parseInt(boundingClientRect.width)}px`}}</span>
-				<span class="">{{`height: ${parseInt(boundingClientRect.height)}px`}}</span>
-				<span class="">{{`distance: ${parseInt(distance.abs)}px`}}</span>
-				<span class="">{{`(x: ${parseInt(distance.x/distance.abs*100)}%, y: ${parseInt(distance.y/distance.abs*100)}%)`}}</span>
-				<span class="">{{`displacement: ${parseInt(displacement.abs)}px`}}</span>
-				<span class="">{{`(x: ${parseInt(displacement.x)}px, y: ${parseInt(displacement.y)}px)`}}</span>
+				<!-- <span class="">{{`width: ${parseInt(boundingClientRect.width)}px`}}</span>
+				<span class="">{{`height: ${parseInt(boundingClientRect.height)}px`}}</span> -->
+				<span class="">{{`↑: ${parseInt(boundingClientRect.top)}px`}}</span>
+				<span class="">{{`←: ${parseInt(boundingClientRect.left)}px`}}</span>
+				<span class="tiny ptop">distance to 🖱</span>
+				<span class="">{{`${parseInt(distance.abs)}px`}}</span>
+				<span class="tiny">{{`(x: ${parseInt(distance.x/distance.abs*100)}%, y: ${parseInt(distance.y/distance.abs*100)}%)`}}</span>
+				<span class="tiny ptop">from origin</span>
+				<span class="">{{`${parseInt(displacement.abs)}px`}}</span>
+				<span class="tiny">{{`(x: ${parseInt(displacement.x)}px, y: ${parseInt(displacement.y)}px)`}}</span>
 			</div>
 		</script>
 
