@@ -1,16 +1,3 @@
-/*
-
-  // TODO: add scroll repell
-
-  always use: getBoundingClientRect + window.scrollX / scrollY
-
-  update mousePosition when scrolling!
-
-
-*/
-
-
-
 Vue.directive('scroll', {
   inserted: function (el, binding) {
     let f = function (evt) {

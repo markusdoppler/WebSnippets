@@ -1,0 +1,42 @@
+/*
+ # Font weights convention
+ 100    thin / hairline
+ 200    extra light
+ 300    light
+ 400    *normal*
+ 500    medium
+ 600    semibold
+ 700    *bold*
+ 800    extrabold
+ 900    black
+ */
+
+/*
+	#################################################################
+							SOCIAL MEDIA
+	#################################################################
+*/
+
+@font-face {
+    font-family: "Socialicon";
+    src: url("Social-Icons/Socialico-Regular.eot");
+    src: url("Social-Icons/Socialico-Regular.eot?#iefix") format("embedded-opentype"),
+    url("Social-Icons/Socialico-Regular.woff") format("woff"),
+    url("Social-Icons/Socialico-Regular.woff2") format("woff2"),
+    url("Social-Icons/Socialico-Regular.otf") format("otf"),
+    url("Social-Icons/Socialico-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Socialicon-Plus";
+    src: url("Social-Icons/SocialicoPlus-Plus.eot");
+    src: url("Social-Icons/SocialicoPlus-Plus.eot?#iefix") format("embedded-opentype"),
+    url("Social-Icons/SocialicoPlus-Plus.woff") format("woff"),
+    url("Social-Icons/SocialicoPlus-Plus.woff2") format("woff2"),
+    url("Social-Icons/SocialicoPlus-Plus.otf") format("otf"),
+    url("Social-Icons/SocialicoPlus-Plus.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
