@@ -7,7 +7,6 @@ body {
 }
 
 p, li, a {
-  font-size: 18px;
   color: #ecf0f1;
   text-decoration: none;
 }
@@ -115,18 +114,39 @@ a {
 
 
 
-
-.github-button {
-	width: 2em;
-	height: 2em;
+.github-reference {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin: 10px;
+	font-size: 14px;
 }
-.github-button .github {
+.fork-me-link {
+	padding: 10px;
+	background: rgba(0,0,0,0.2);
+	transition: all 0.3s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.fork-me-link:hover {
+	background: rgba(0,0,0,1.0);
+}
+.fork-me-link-text {
+	padding-right: 10px;
+}
+.fork-me-link-button {
+	display: flex;
+}
+.fork-me-link-button .github {
 	line-height: 1em;
 	width: 0.75em;
 	height: 0.75em;
-	background: black;
+	background: white;
+	color: black;
 	border-radius: 100%;
 }
-.github-button .github:before {
-	top: 0.22em;
+.fork-me-link-button .github:before {
+	top: 0.24em;
 }

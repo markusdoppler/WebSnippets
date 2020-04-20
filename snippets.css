@@ -28,6 +28,7 @@ body.snippets {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+	padding: 0;
 	padding-bottom: 40px;
 }
 
@@ -66,7 +67,7 @@ ul {
 .snippets ul {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 }
 
