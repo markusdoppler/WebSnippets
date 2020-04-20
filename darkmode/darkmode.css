@@ -42,18 +42,20 @@ h1 {
 }
 
 /* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
 .logo {
   height: 42px;
   z-index: 5;
   cursor: pointer;
-  display: flex;
-  align-items: center;
 }
-
-.logo .logo-text {
+.logo-container .logo-text {
   margin-left: 10px;
   font-weight: 800;
   font-size: 24px;
+  color: #050620;
 }
 
 
