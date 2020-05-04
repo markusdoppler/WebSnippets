@@ -1,0 +1,99 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #ecf0f1;
+  color: #050620;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid white; */
+}
+
+.overview-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.overview-form label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0;
+}
+.overview-form input {
+  /* width: 200px; */
+}
+
+
+input[type=text], input[type=password], input[type=email], input[type=number], input[type=tel], input[type=search], input[type=url] {
+  background: white;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5em;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+input[type=text]:focus {
+  border: 1px solid #558E47;
+}
+
+
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-form > * {
+  margin: 0.5em;
+}
+.contact-form input {
+  background: white;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5em;
+  width: 300px;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.contact-form input:focus {
+  border: 1px solid #558E47;
+}
+.contact-form input[type="submit"] {
+  position: relative;
+  width: 300px;
+  background: #558E47;
+  font-size: 0.8em;
+  padding: 0.75em;
+  border: 1px solid #558E47;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.contact-form input[type="submit"]:disabled {
+  background: gray;
+  border: 1px solid gray;
+}
+.contact-form input[type="submit"]:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+.contact-form input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 5px #558E47;
+}

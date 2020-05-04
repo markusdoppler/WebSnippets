@@ -1,0 +1,99 @@
+body {
+  background-color: #ecf0f1;
+  color: #050620;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid white; */
+}
+
+.window-container-light, .window-container-dark {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mac-os-window-light,
+.mac-os-window-dark {
+  border-radius: 5px;
+  background: #2C2B2C;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.mac-os-window-header {
+  padding: 8px;
+}
+.mac-os-window-buttons {
+  display: flex;
+}
+.mac-os-window-button-red,
+.mac-os-window-button-yellow,
+.mac-os-window-button-green {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin: 4px;
+  cursor: pointer;
+}
+.mac-os-window-content {
+  padding: 20px;
+  background-color: transparent !important;
+}
+.mac-os-window-content code {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+  text-shadow: none;
+}
+
+
+.window-container-light {
+  background: gray;
+}
+
+.mac-os-window-light {
+  background: #E8E7E6;
+  color: #585655;
+}
+.mac-os-window-light .mac-os-window-button-red,
+.mac-os-window-light .mac-os-window-button-yellow,
+.mac-os-window-light .mac-os-window-button-green {
+  background: #DCDCDC;
+}
+.mac-os-window-light .mac-os-window-button-red {
+  background: #FF6159;
+}
+.mac-os-window-light .mac-os-window-button-yellow {
+  background: #FFBD2E;
+}
+.mac-os-window-light .mac-os-window-button-green {
+  background: #29CC41;
+}
+
+
+
+.window-container-dark {
+  background: #050620;
+}
+
+.mac-os-window-dark {
+  background: #2C2B2C;
+  color: #D3D0CD;
+}
+.mac-os-window-dark .mac-os-window-button-red,
+.mac-os-window-dark .mac-os-window-button-yellow,
+.mac-os-window-dark .mac-os-window-button-green {
+  background: #585655;
+}
+.mac-os-window-dark .mac-os-window-button-red {
+  background: #FF5A52;
+}
+.mac-os-window-dark .mac-os-window-button-yellow {
+  background: #E6C029;
+}
+.mac-os-window-dark .mac-os-window-button-green {
+  background: #52C22B;
+}

@@ -1,6 +1,6 @@
 let colourItem = {
 	template: "#colour-item-template",
-	props: ['colour-code'],
+	props: ['colour-code', 'mode'],
 	data() {
 		return {
 			hex: "000000",
@@ -50,21 +50,42 @@ let colourItem = {
 		  } : null;
 		},
 		select() {
-			this.$emit('copy', this.hexCode)
+			let c = this.mode == "hex" ? this.hexCode : this.rgbaCode
+			this.$emit('copy', c)
 		}
 	}
 };
 
+let colourModeSelector = {
+	template: "#colour-mode-selector-template",
+	data() {
+		return {
+			modes: ["hex", "rgba"],
+			currentMode: "hex"
+		}
+	},
+	methods: {
+		selectMode(mode) {
+			this.currentMode = mode
+			this.$emit('selected', this.currentMode)
+		}
+	}
+}
 
 var colourPicker = new Vue({
 	el: "#colour-board",
 	data: {
-		selectedColour: null
+		selectedColour: null,
+		mode: "hex"
 	},
 	components: {
+		colourModeSelector,
 		colourItem
 	},
 	methods: {
+		changeMode(mode) {
+			this.mode = mode
+		},
 		copyColourCode(code) {
 			this.selectedColour = code;
 			copyTextToClipboard(code);
