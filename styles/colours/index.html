@@ -9,9 +9,13 @@
 	</head>
 	<body>
 		<section id="colour-board">
+			<colour-set></colour-set>
+
+			<h1>Colour Catalogue</h1>
+
 			<colour-mode-selector @selected="changeMode"></colour-mode-selector>
 
-			<h1>Material Colours</h1>
+			<h2>Material Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
 					<colour-item :mode="mode" colour-code="#ecf0f1" @copy="copyColourCode">blueish white</colour-item>
@@ -23,7 +27,7 @@
 				</div>
 			</div>
 
-			<h1>Forest Colours</h1>
+			<h2>Forest Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
 					<colour-item :mode="mode" colour-code="#619765" @copy="copyColourCode">green 1</colour-item>
@@ -39,7 +43,7 @@
 				</div>
 			</div>
 
-			<h1>Grayscale Colours</h1>
+			<h2>Grayscale Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
 					<colour-item :mode="mode" colour-code="#fafafa" @copy="copyColourCode">gray 0</colour-item>
@@ -50,14 +54,14 @@
 				</div>
 			</div>
 
-			<h1>Flower Colours</h1>
+			<h2>Flower Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
 					<colour-item :mode="mode" colour-code="" @copy="copyColourCode"></colour-item>
 				</div>
 			</div>
 
-			<h1>Leaf Colours</h1>
+			<h2>Leaf Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
 					<colour-item :mode="mode" colour-code="#C1B894" @copy="copyColourCode">dark beige</colour-item>
@@ -69,9 +73,27 @@
 			</div>
 		</section>
 
+		<script type="text/x-template" id="colour-set-template">
+			<div class="colour-set">
+				<div class="colour-set-header">
+					<h1>Quick Colours</h1>
+					<button @click="saveColours">Save</button>
+				</div>
+				<ul>
+					<li v-for="(colour, colourIndex) in colours" class="colour-set-item" :style="{backgroundColor: colour.hex}">
+						<input type="text" placeholder="#000000" v-model="colour.hex">
+						<button class="delete" @click="deleteColour(colourIndex)">&times;</button>
+					</li>
+					<li class="colour-set-item">
+						<button class="add" @click="addColour">+</button>
+					</li>
+				</ul>
+			</div>
+		</script>
+
 		<script type="text/x-template" id="colour-mode-selector-template">
 			<div class="colour-mode-toggle">
-				<h3>Copy</h3>
+				<h3>Copy colour values to clipboard by clicking on any colour.</h3>
 				<div class="mode-option" v-for="m in modes">
 					<input type="radio" name="mode" :checked="m == currentMode" :id="m" @click="selectMode(m)">
 					<label class="mode-label" :for="m">{{m.toUpperCase()}}</label>

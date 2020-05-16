@@ -1,3 +1,37 @@
+let colourSet = {
+	template: "#colour-set-template",
+	data() {
+		return {
+			colours: []
+		}
+	},
+	mounted() {
+		let savedColourSet = window.localStorage.getItem("colourset")
+		if (savedColourSet != "null") {
+			this.colours = JSON.parse(savedColourSet)
+		}
+	},
+	watch: {
+		// colours() {
+		// 	console.log("changed colour array", JSON.parse(this.colours));
+		// 	window.localStorage.setItem("colourset", JSON.stringify(this.colours))
+		// }
+	},
+	methods: {
+		addColour() {
+			this.colours.push({hex: '#550055'})
+			this.saveColours()
+		},
+		deleteColour(index) {
+			this.colours.splice(index,1)
+			this.saveColours()
+		},
+		saveColours() {
+			window.localStorage.setItem("colourset", JSON.stringify(this.colours))
+		}
+	}
+}
+
 let colourItem = {
 	template: "#colour-item-template",
 	props: ['colour-code', 'mode'],
@@ -79,6 +113,7 @@ var colourPicker = new Vue({
 		mode: "hex"
 	},
 	components: {
+		colourSet,
 		colourModeSelector,
 		colourItem
 	},
