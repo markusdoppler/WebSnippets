@@ -1,0 +1,46 @@
+section {
+  width: 40rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background-color: #c7d6da;
+  color: #050620;
+  line-height: 2;
+}
+
+.dark {
+  background-color: #050620;
+  color: #ecf0f1;
+}
+
+.lorem {
+  margin: 0px auto;
+  width: 70%;
+  line-height: 1.2em;
+}
+
+
+/****************************************************
+                        LISTS
+*****************************************************/
+
+/* Simple Numbered List */
+.list-numbered {
+  padding-left: 2rem;
+  list-style: none;
+  counter-reset: li;
+}
+.list-numbered > li {
+  position: relative;
+  margin-bottom: 1rem;
+}
+ol.list-numbered > li::before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -2rem;
+  top: -0.7rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgba(0,0,0,0.4);
+}

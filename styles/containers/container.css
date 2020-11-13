@@ -97,3 +97,104 @@ body {
 .mac-os-window-dark .mac-os-window-button-green {
   background: #52C22B;
 }
+
+
+
+
+/* Ribbon */
+
+.ribbon-article {
+  width: 60rem;
+  max-width: 100%;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: rgb(197, 197, 197);
+}
+.ribbon-section {
+  position: relative;
+  left: -2.5rem;
+  width: 62rem;
+  max-width: 100vw;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background-color: #9e2812;
+  background: linear-gradient(to bottom, #9e2812 0%, #6f0d0d 100%);
+  box-sizing: border-box;
+}
+.ribbon-section::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 0rem;
+  width: 0;
+  height: 0;
+  border: 0.5rem solid #6f0d0d;
+  border-color: transparent #6f0d0d #6f0d0d transparent;
+}
+.ribbon-section::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  right: 0rem;
+  width: 0;
+  height: 0;
+  border: 0.5rem solid #6f0d0d;
+  border-color: #6f0d0d transparent transparent #6f0d0d;
+}
+
+
+/* FILES */
+
+.file {
+  position: relative;
+  width: 6.66rem;
+  height: 10rem;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.file::before {
+  content: "";
+  position: absolute;
+  top: -0.7rem;
+  right: -0.7rem;
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(to bottom left, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+  background: rgba(0,0,0,0.2);
+  transition: 0.3s ease;
+}
+.file::after {
+  content: "";
+  position: absolute;
+  top: -1.3rem;
+  right: -1.3rem;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  transform: rotate(45deg);
+  background-color: #ecf0f1;
+  transition: 0.3s ease;
+}
+.file:hover::before {
+  top: 0;
+  right: 0;
+}
+.file:hover::after {
+  top: -1rem;
+  right: -1rem;
+}
+.file--green {
+  background-color: #29CC41;
+}
+.file--blue {
+  background-color: rgb(62, 101, 209);
+}
+.file--red {
+  background-color: #e05a42;
+}

@@ -39,3 +39,12 @@ li {
   color: #050620;
   text-transform: uppercase;
 }
+
+/* Letter Heading */
+.gradient span {
+  background: linear-gradient(94deg, #ff2a2a, #7074ff);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+}
