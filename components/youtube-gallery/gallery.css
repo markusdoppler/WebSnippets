@@ -1,0 +1,114 @@
+#voices {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid green; */
+}
+.video-previews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.backward-button, .forward-button {
+  display: none;
+}
+
+.youtube-video {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.video-link {
+  margin-bottom: 10px;
+}
+.video-link a {
+  color: #FFF500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.video-link a:after {
+  content: '\276F';
+  opacity: 0;
+  margin-left: 5px;
+  transform: translateX(-10px);
+  transition: 0.3s all ease-in-out;
+}
+.video-link a:hover:after {
+  content: '\276F';
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+.youtube-preview {
+  width: 33%;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  /* border: 1px solid pink; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.youtube-preview img {
+  width: 100%;
+}
+.highlighted-video {
+  border: 6px solid #FFF500;
+}
+
+@media only screen and (min-width: 1000px) {
+  .youtube-preview {
+    width: 25%;
+    padding: 10px;
+    margin: 10px;
+  }
+  .highlighted-video {
+    /* border: 6px solid yellow; */
+  }
+
+  #voices:hover .backward-button, #voices:hover .forward-button {
+    opacity: 1.0;
+  }
+  .backward-button, .forward-button {
+    position: inherit;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s all ease-in-out;
+  }
+  .button-content {
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 4em;
+    border: 2px solid transparent;
+    color: #004961;
+    background: transparent;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+  }
+  .backward-button:hover .button-content, .forward-button:hover .button-content {
+    /*background: #004961;
+    color: white;*/
+    text-shadow: 0 0 10px #004961;
+  }
+
+}

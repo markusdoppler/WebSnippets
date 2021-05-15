@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<title>Markus Doppler | Scroll in Control Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../../snippets.css" rel="stylesheet" />
+    <link href="scrollobject.css" rel="stylesheet" />
+		<link href="../../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+		<h1>Scroll Object</h1>
+		<section class="hero" id="scroll-room" v-on:scroll="updatePosition">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				sed do eiusmod tempor incididunt ut labore et dolore magna
+				aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+				ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				Duis aute irure dolor in reprehenderit in voluptate velit
+				esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+				occaecat cupidatat non proident, sunt in culpa qui officia
+				deserunt mollit anim id est laborum.
+			</p>
+			<scrolling-object
+				id="object1"
+				:scroll-position="lastScrollYPosition">
+				<h3>
+					The following displays all sizes within this document.
+					The <span style="border-bottom: 2px solid white">thick white border</span> marks the window.
+					The <span style="border-bottom: 1px solid red">thin red border</span> is the border of this element.
+				</h3>
+			</scrolling-object>
+
+		</section>
+
+		<footer>
+			<div class="scroll-info">
+				<span class="info-description">scroll</span>
+				<div id="scrollXY">↔︎ 0 / ↕︎ 0</div>
+			</div>
+			<div class="screen-info">
+				<span class="info-description">window size</span>
+				<div id="screenHW">(width: 0, height: 0)</div>
+			</div>
+			<div class="mouse-info">
+				<span class="info-description">mouse movement</span>
+				<div id="mouseXY">in window: (0, 0)<br>in document: (0, 0)</div>
+			</div>
+		</footer>
+
+		<script type="text/x-template" id="scrolling-object-template">
+			<div class="scrolling-object" :id="id" :style="styleOfInterest">
+				<slot></slot>
+				<div class="scroll-object-visualisation">
+					<div class="window">
+						<div class="flex-top">
+							<span>{{`↑ top: ${parseInt(topToTopPercent*100)}% (${parseInt(boundingClientRect.top-scrollPosition.y)}px)`}}</span>
+						</div>
+
+						<div class="rect-left-right">
+							<div class="flex-left">
+								<span>{{`← left: ${parseInt(leftToLeftPercent*100)}% (${parseInt(boundingClientRect.left-scrollPosition.x)}px)`}}</span>
+							</div>
+
+							<div class="rect">
+								<span class="top">{{`@${parseInt(boundingClientRect.top)}px`}}</span>
+								<div class="centralSize">
+									<span class="left">{{`@${parseInt(boundingClientRect.left)}px`}}</span>
+									<div class="size">
+										<span>{{`↕︎ height: ${parseInt(heightPercent*100)}%`}}</span>
+										<span>{{`↔︎ width: ${parseInt(widthPercent*100)}%`}}</span>
+									</div>
+									<span class="right">{{`@${parseInt(boundingClientRect.right)}px`}}</span>
+								</div>
+								<span class="bottom">{{`@${parseInt(boundingClientRect.bottom)}px`}}</span>
+							</div>
+
+							<div class="flex-right">
+								<span>{{`← right: ${parseInt(rightToLeftPercent*100)}% (${parseInt(boundingClientRect.right-scrollPosition.x)}px)`}}</span>
+							</div>
+						</div>
+
+						<div class="flex-bottom">
+							<span>{{`↑ bottom: ${parseInt(bottomToTopPercent*100)}% (${parseInt(boundingClientRect.bottom-scrollPosition.y)}px)`}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+
+
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+		<script src="scrollobject.js" type="text/javascript"></script>
+	</body>
+</html>

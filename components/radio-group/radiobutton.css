@@ -1,0 +1,26 @@
+/* Roving tab index */
+radio-button {
+  position: relative;
+  display: block;
+  margin-left: 2rem;
+}
+radio-button:focus {
+  outline: none;
+}
+radio-button::before {
+  content: '';
+  position: absolute;
+  top: 0.35rem;
+  left: -2rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0 0 2px black;
+}
+radio-button[tabindex='0']::before {
+  background: rgb(225, 65, 65);
+}
+radio-button:focus::before {
+  box-shadow: 0 0 2px black, 0 0 10px rgb(225, 65, 65), 0 0 10px rgb(225, 65, 65);
+}

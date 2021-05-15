@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  background: #ecf0f1;
+  color: #050620;
+}
+
+/* Hero */
+
+.hero {
+  min-height: 100%;
+  position: relative;
+  padding: 0 10%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+
+/* Glasmorphic design */
+
+.background {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: purple;
+    z-index: -1;
+}
+
+.container {
+    position: relative;
+    max-width: 30%;
+    background: rgba(255,255,255,0.2);
+    padding: 3rem;
+    border-radius: 3rem;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+    border: 2px solid transparent;
+    z-index: 1;
+    background-clip: padding-box;
+    -webkit-background-clip: padding-box;
+    box-shadow: 10px 10px 10px rgba(46,554,68,0.03);
+    transition: transform 1s ease;
+}
+.container:hover {
+    transform: scale(1.1) translateX(20px);
+}

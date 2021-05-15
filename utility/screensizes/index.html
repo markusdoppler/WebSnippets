@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+      <title>Screensize</title>
+
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+      <style>
+         *, *::before, *::after  {
+            box-sizing: border-box;
+         }
+         body {
+            width: 100vw;
+
+            background: #050620;
+            background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+            background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+            background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+            color: #ecf0f1;
+            background-size: 100vw 100vh;
+
+            height: 200vh;
+
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 2rem;
+         }
+      </style>
+   </head>
+
+   <body style="padding: 50px; font-size: 30px;">
+      <ul>
+         <li class="screen-width"></li>
+         <li class="screen-height"></li>
+         <li class="device-pixel-ratio"></li>
+         <li class="avail-width"></li>
+         <li class="avail-height"></li>
+         <li class="jquery-width"></li>
+         <li class="jquery-height"></li>
+         <li class="inner-width"></li>
+         <li class="inner-height"></li>
+      </ul>
+      <button id="size-button">Determine Sizes</button>
+      <p id="console-log"></p>
+   </body>
+
+   <script>
+      function determineSizes() {
+         $(".screen-width").html("<div>screen width: " + window.screen.width + "</div>");
+         $(".screen-height").html("<div>screen height: " + window.screen.height + "</div>");
+         $(".device-pixel-ratio").html("<div>pixel ratio: " + window.devicePixelRatio + "</div>");
+         $(".avail-width").html("<div>available width: " + window.screen.availWidth + "</div>");
+         $(".avail-height").html("<div>available height: " + window.screen.availHeight + "</div>");
+         $(".jquery-width").html("<div>jquery width: " + $(window).width() + "</div>");
+         $(".jquery-height").html("<div>jquery height: " + $(window).height() + "</div>");
+         $(".inner-width").html("<div>inner width: " + window.innerWidth + "</div>");
+         $(".inner-height").html("<div>inner height: " + window.innerHeight + "</div>");
+      }
+      determineSizes()
+
+      $('#size-button').on('click', determineSizes)
+      window.addEventListener('resize', function() {
+         $('#console-log').html("Resizing window...")
+         setTimeout(function() { $('#console-log').html(' ') }, 1000)
+      })
+   </script>
+</html>

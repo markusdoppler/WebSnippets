@@ -44,3 +44,36 @@ ol.list-numbered > li::before {
   font-weight: bold;
   color: rgba(0,0,0,0.4);
 }
+
+/****************************************************
+                        LISTS
+*****************************************************/
+
+/* Simple Numbered List */
+.list-circled {
+  padding-left: 2rem;
+  list-style: none;
+  counter-reset: li;
+}
+.list-circled > li {
+  position: relative;
+  margin-bottom: 1rem;
+}
+ol.list-circled > li::before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -2.3rem;
+  top: 0rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: var(--color_main);
+  background-color: #050620;
+}
