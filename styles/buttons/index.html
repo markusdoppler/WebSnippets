@@ -37,6 +37,22 @@
 			<li>
 				<a href="" role="button" class="flying-book-button">Coniungere</a>
 			</li>
+			<li>
+				<button class="ripple-button">Coniungere<span class="ripple-button-effect"></span></button>
+        <script>
+          document.querySelector(".ripple-button").addEventListener("click", function(e) {
+            this.querySelector(".ripple-button-effect").classList.remove("active");
+            this.style.setProperty("--click-x", 100*e.layerX/this.getBoundingClientRect().width + "%");
+            this.style.setProperty("--click-y", 100*e.layerY/this.getBoundingClientRect().height + "%");
+            setTimeout(() => {
+              this.querySelector(".ripple-button-effect").classList.add("active");
+            }, 10);
+            this.querySelector(".ripple-button-effect").addEventListener("animationend", function() {
+              this.classList.remove("active");
+            })
+          })
+        </script>
+			</li>
 		</ul>
 	</body>
 </html>

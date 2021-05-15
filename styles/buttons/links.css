@@ -268,3 +268,49 @@ li {
   color: #050620;
   transform: translate(0, 0);
 }
+
+
+/* Ripple Button */
+.ripple-button {
+  --click-x: 0px;
+  --click-y: 0px;
+  all: unset;
+  position: relative;
+  padding: 0.8em 1.2em;
+  border-radius: 0.2em;
+  background-color: #b81a1f;
+  color: white;
+  border-color: #b81a1f;
+  transition: 0.5s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+.ripple-button * {
+  pointer-events: none;
+}
+.ripple-button:hover {
+  background-color: #cf2026;
+  color: white;
+  border-color: #cf2026;
+}
+.ripple-button-effect {
+  display: block;
+  position: absolute;
+  left: var(--click-x);
+  top: var(--click-y);
+  width: 30%;
+  height: 0;
+  padding-bottom: 40%;
+  border-radius: 100%;
+  background: hsla(0, 0%, 100%, 0.5);
+  transform: translate(-50%, -50%) scale(0);
+}
+.ripple-button-effect.active {
+  animation: 1s ripple;
+}
+@keyframes ripple {
+  to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(2.5);
+  }
+}
