@@ -1,0 +1,15 @@
+{
+  "background_color": "green",
+  "description": "Butterflies on the homescreen!",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "../../assets/peacock-300.png",
+      "sizes": "300x300",
+      "type": "image/png"
+    }
+  ],
+  "name": "Butterfly",
+  "short_name": "Butterfly",
+  "start_url": "/snippets/components/home-screen/index.html"
+}
