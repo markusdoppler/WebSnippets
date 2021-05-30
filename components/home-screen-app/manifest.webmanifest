@@ -7,9 +7,14 @@
       "src": "../../assets/peacock-192.png",
       "sizes": "192x192",
       "type": "image/png"
+    },
+    {
+      "src": "../../assets/peacock-100.png",
+      "sizes": "100x100",
+      "type": "image/png"
     }
   ],
   "name": "Butterfly",
   "short_name": "Butterfly",
-  "start_url": "/websnippets/components/home-screen/index.html"
+  "start_url": "/websnippets/components/home-screen-app/index.html"
 }
