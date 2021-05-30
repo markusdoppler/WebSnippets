@@ -6,6 +6,7 @@ self.addEventListener('install', (e) => {
       '/snippets/components/home-screen-app/index.js',
       '/snippets/components/home-screen-app/style.css',
       '/snippets/assets/peacock-300.png',
+      '/snippets/assets/peacock-192.png',
     ])),
   );
 });
