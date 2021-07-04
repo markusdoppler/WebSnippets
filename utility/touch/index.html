@@ -11,10 +11,7 @@
          box-sizing: border-box;
       }
       body {
-         display: flex;
-         width: 100vw;
-         justify-content: stretch;
-         flex-wrap: wrap;
+        margin-bottom: 30vh;
 
          background: #050620;
          background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
@@ -23,13 +20,11 @@
          color: #ecf0f1;
          background-size: 100vw 100vh;
 
-         height: 200vh;
-
          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
-      .test {
-         width: max(33vw, 300px);
-         padding: 3vw;
+      h1 {
+        width: 100%;
+        text-align: center;
       }
       ul {
          list-style: none;
@@ -40,7 +35,45 @@
          align-items: center;
          margin: 0.5em;
       }
-      .test-option .toggle, .custom-radio .radio-toggle {
+
+      /* Test Canvas */
+      .test-canvas {
+        position: relative;
+         width: 100%;
+         height: 45vh;
+         border: 2px solid #ecf0f1;
+         border-radius: 0.3rem;
+      }
+      .draggable {
+        position: absolute;
+         margin: 5% 10%;
+         height: 80%;
+         width: 80%;
+         font-size: 0.5rem;
+         background: rgb(134, 204, 124);
+         color: #050620;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         text-align: center;
+         box-shadow: 0 0 10px #050620C0;
+         cursor: pointer;
+         -webkit-user-select: none;
+            -moz-user-select: none;
+             -ms-user-select: none;
+                 user-select: none;
+      }
+
+      .test-container {
+        padding: 3vw;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        max-width: 100%;
+        max-height: 35vh;
+        overflow: auto;
+      }
+      .toggle {
          display: inline-block;
          width: 1em;
          height: 1em;
@@ -48,8 +81,17 @@
          border-radius: 50%;
          background-color: gray;
       }
-      .test-option .toggle--on {
+      .toggle.toggle--on {
          background-color: rgb(134, 204, 124);
+      }
+      .value {
+         display: inline-block;
+         width: 5ch;
+         height: 1em;
+         margin-right: 1em;
+         border-radius: 4px;
+         background-color: gray;
+         text-align: center;
       }
 
       /* Radio Button */
@@ -65,9 +107,12 @@
          display: none;
       }
       .custom-radio .radio-toggle {
+        display: inline-block;
+         margin-right: 1em;
+         border-radius: 50%;
          width: 1em;
          height: 1em;
-         background: #050620;
+         background-color: #050620;
          box-shadow: 0 0 2px rgba(0,0,0,0.5);
          transition: 0.3s ease;
          transform: translateX(0.3em) translateY(0.12em);
@@ -78,352 +123,177 @@
       }
 
 
-      /* Test Canvas */
-      .test-canvas {
-         width: 100%;
-         height: max(10vw, 10rem);
-         border: 2px solid #ecf0f1;
-         border-radius: 0.3rem;
-      }
-      .draggable {
-         position: relative;
-         top: 2rem;
-         left: 2rem;
-         width: 2rem;
-         height: 2rem;
-         font-size: 0.5rem;
-         background:rgb(134, 204, 124);
-         color: #050620;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         text-align: center;
-         border-radius: 100%;
-         box-shadow: 0 0 10px #050620C0;
-         cursor: pointer;
-         -webkit-user-select: none;
-            -moz-user-select: none;
-             -ms-user-select: none;
-                 user-select: none;
-      }
    </style>
-
-   <!-- My local scripts -->
-   <!-- <script src="../assets/scripts/jquery.min.js"></script>
-   <script src="../assets/scripts/jquery-ui/jquery-ui.min.js"></script> -->
-   <!-- <link rel="stylesheet" href="../assets/scripts/jquery-ui/jquery-ui.min.css"> -->
-   <!-- <script src="https://www.the-smart-way.at/js/jquery.ui.touch-punch.min.js"></script> -->
-
-   <!-- <script src="../assets/scripts/svg@2.7.1.min.js"></script>
-   <script src="../assets/scripts/svg.draggable@2.2.0.min.js"></script> -->
-
-   <!-- <script src="../assets/scripts/svg.min.js"></script>
-   <script src="../assets/scripts/svg.draggable.min.js"></script> -->
-
-
-
-   <!-- SchuBu scripts -->
-
-   <script src="https://www.the-smart-way.at/js/jquery-3.4.1.min.js"></script>
-   <script src="https://www.the-smart-way.at/js/jquery-ui.min.js"></script>
-   <!-- <script src="https://www.the-smart-way.at/js/jquery.ui.touch-punch.min.js"></script> -->
-
-   <script src="https://www.the-smart-way.at/js/svg.min.js"></script>
-   <script src="https://www.the-smart-way.at/js/svg.draggable.min.js"></script>
-
-   <!-- <script src="https://www.the-smart-way.at/js/utils_lev.js"></script>
-   <script src="https://www.the-smart-way.at/js/svg.filter.js"></script> -->
 </head>
 <body>
-
-   <div class="test test-native">
-      <h2>Native</h2>
-      <div class="test-canvas"></div>
-      <ul class="test-option">
+  <h1>Pointer Events</h1>
+  <div class="test-container">
+      <ul>
          <li class="mousemove"><span class="toggle"></span>mousemove</li>
+         <li class="mouseover"><span class="toggle"></span>mouseover</li>
+         <li class="mouseout"><span class="toggle"></span>mouseout</li>
+         <li class="mouseenter"><span class="toggle"></span>mouseenter</li>
+         <li class="mouseleave"><span class="toggle"></span>mouseleave</li>
+         <hr>
          <li class="mousedown"><span class="toggle"></span>mousedown</li>
          <li class="mouseup"><span class="toggle"></span>mouseup</li>
          <li class="click"><span class="toggle"></span>click</li>
+         <hr>
+         <li class="mousewheel"><span class="toggle"></span>mousewheel</li>
       </ul>
-      <ul class="test-option">
+      <ul>
          <li class="touchstart"><span class="toggle"></span>touchstart</li>
          <li class="touchmove"><span class="toggle"></span>touchmove</li>
          <li class="touchend"><span class="toggle"></span>touchend</li>
          <li class="touchcancel"><span class="toggle"></span>touchcancel</li>
+         <li class="touchforcechange"><span class="toggle"></span>touchforcechange</li>
          <hr>
-         <li>
-            <label>
-               <input type="checkbox" id="native-prevent-default">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>prevent default</strong>
-            </label>
-         </li>
+         <li class="gesturestart"><span class="toggle"></span>gesturestart</li>
+         <li class="gesturechange"><span class="toggle"></span>gesturechange</li>
+         <li class="gestureend"><span class="toggle"></span>gestureend</li>
+      </ul>
+      <ul>
+        <li class="pointermove"><span class="toggle"></span>pointermove</li>
+        <li class="pointerover"><span class="toggle"></span>pointerover</li>
+        <li class="pointerout"><span class="toggle"></span>pointerout</li>
+        <li class="pointerenter"><span class="toggle"></span>pointerenter</li>
+        <li class="pointerleave"><span class="toggle"></span>pointerleave</li>
+        <hr>
+        <li class="pointerdown"><span class="toggle"></span>pointerdown</li>
+        <li class="pointerup"><span class="toggle"></span>pointerup</li>
+      </ul>
+      <ul>
+        <li>
+          <label>
+             <input type="checkbox" id="prevent-default">
+             <span class="custom-radio">
+                <span class="radio-toggle"></span>
+             </span>
+             <strong>prevent default</strong>
+          </label>
+        </li>
+        <li>
+          <label>
+             <input type="checkbox" id="stop-propagation">
+             <span class="custom-radio">
+                <span class="radio-toggle"></span>
+             </span>
+             <strong>stop propagation</strong>
+          </label>
+       </li>
       </ul>
    </div>
 
-   <div class="test test-jquery-ui">
-      <h2>jQuery UI Draggable</h2>
-      <div class="test-canvas">
-         <div class="draggable" id="jquery-draggable">Drag Me</div>
-      </div>
-      <ul class="test-option">
-         <li class="start"><span class="toggle"></span>start</li>
-         <li class="drag"><span class="toggle"></span>drag</li>
-         <li class="stop"><span class="toggle"></span>stop</li>
-         <hr>
-         <li>
-            <label>
-               <input type="radio" id="jquery-draggable-toggle">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>draggable</strong>
-            </label>
-         </li>
-         <li>
-            <label>
-               <input type="radio" id="touch-punch">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>Touch Punch</strong> (turn on before draggable)
-            </label>
-         </li>
-         <li>
-            <label>
-               <input type="radio" id="simple-touch-to-mouse">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>Simple Touch to Mouse Event</strong>
-            </label>
-         </li>
-         <li>
-            <label>
-               <input type="checkbox" id="jquery-ui-prevent-default">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>prevent default</strong>
-            </label>
-         </li>
-      </ul>
-   </div>
+   <div class="test-canvas">
+    <div class="draggable"></div>
+  </div>
 
-   <div class="test test-svg">
-      <h2>draggable.SVG.js (v2.2.0)</h2>
-      <div class="test-canvas" id="svg-canvas">
-      </div>
-      <ul class="test-option">
-         <li class="dragstart"><span class="toggle"></span>dragstart</li>
-         <li class="dragmove"><span class="toggle"></span>dragmove</li>
-         <li class="dragend"><span class="toggle"></span>dragend</li>
-         <hr>
-         <li>
-            <label>
-               <input type="checkbox" id="svg-prevent-default">
-               <span class="custom-radio">
-                  <span class="radio-toggle"></span>
-               </span>
-               <strong>prevent default</strong>
-            </label>
-         </li>
-      </ul>
-   </div>
-
-   <!-- <template id="script-touch-punch">
-      <script src="https://www.the-smart-way.at/js/jquery.ui.touch-punch.min.js"></script>
-   </template> -->
-
-   <template id="script-simple-touch-to-mouse">
-      function touchHandler(event) {
-         event.preventDefault()
-         event.stopPropagation()
-         event.stopImmediatePropagation()
-
-         var touches = event.changedTouches
-         var first = touches[0]
-         var type = ""
-
-         switch(event.type) {
-            case "touchstart": type="mousedown"; break;
-            case "touchmove":  type="mousemove"; break;
-            case "touchend":   type="mouseup";   break;
-            default: return;
-         }
-
-         // initMouseEvent(type, canBubble, cancelable, view, clickCount,
-         //                screenX, screenY, clientX, clientY, ctrlKey,
-         //                altKey, shiftKey, metaKey, button, relatedTarget);
-
-         var simulatedEvent = document.createEvent("MouseEvent")
-         simulatedEvent.initMouseEvent(type, true, true, window, 1,
-                                    first.screenX, first.screenY,
-                                    first.clientX, first.clientY, false,
-                                    false, false, false, 0/*left*/, null)
-
-         first.target.dispatchEvent(simulatedEvent)
-      }
-
-      function init() {
-         document.addEventListener("touchstart", touchHandler, true);
-         document.addEventListener("touchmove", touchHandler, true);
-         document.addEventListener("touchend", touchHandler, true);
-         document.addEventListener("touchcancel", touchHandler, true);
-      }
-      init()
-   </template>
-
+  <ul>
+    <li class="x"><span class="value"></span>x</li>
+    <li class="y"><span class="value"></span>y</li>
+    <li class="scale"><span class="value"></span>scale</li>
+    <li class="rotation"><span class="value"></span>rotation</li>
+  </ul>
 
 <script>
-   var timeouts = {
-      // mouse
-      "mousemove": undefined,
-      "mousedown": undefined,
-      "mouseup": undefined,
-      "click": undefined,
-      // touch
-      "touchstart": undefined,
-      "touchmove": undefined,
-      "touchend": undefined,
-      "touchcancel": undefined,
-      // jQuery
-      "start": undefined,
-      "drag": undefined,
-      "stop": undefined,
-      // SVG
-      "dragstart": undefined,
-      "dragmove": undefined,
-      "dragend": undefined
-   }
+  var timeouts = {
+    // mouse
+    "mousemove": undefined,
+    "mouseover": undefined,
+    "mouseout": undefined,
+    "mouseenter": undefined,
+    "mouseleave": undefined,
+    "mousedown": undefined,
+    "mouseup": undefined,
+    "click": undefined,
+    "mousewheel": undefined,
+    // touch
+    "touchstart": undefined,
+    "touchmove": undefined,
+    "touchend": undefined,
+    "touchcancel": undefined,
+    "touchforcechange": undefined,
+    // pointer
+    "pointermove": undefined,
+    "pointerdown": undefined,
+    "pointerup": undefined,
+    "pointerover": undefined,
+    "pointerout": undefined,
+    "pointerenter": undefined,
+    "pointerleave": undefined,
+    // gesture
+    "gesturestart": undefined,
+    "gesturechange": undefined,
+    "gestureend": undefined,
+  }
 
-   /**
-    *   Native Events
-    */
+  /**
+  *   Pointer Events
+  */
+  const element = document.querySelector(".draggable");
 
-   // mouse
-   window.addEventListener("mousemove", function(e) { nativePointerEvent(e, "mousemove")  })
-   window.addEventListener("mousedown", function(e) { nativePointerEvent(e, "mousedown") })
-   window.addEventListener("mouseup",   function(e) { nativePointerEvent(e, "mouseup")   })
-   window.addEventListener("click",     function(e) { nativePointerEvent(e, "click")      })
-   // touch
-   window.addEventListener("touchstart", function(e) { nativePointerEvent(e, "touchstart") })
-   window.addEventListener("touchmove",  function(e) { nativePointerEvent(e, "touchmove")  })
-   window.addEventListener("touchend",   function(e) { nativePointerEvent(e, "touchend")   })
-   window.addEventListener("touchcancel",function(e) { nativePointerEvent(e, "touchcancel")})
-
-   function nativePointerEvent(e, eventName) {
-      if (preventNative) e.preventDefault()
-      clearTimeout(timeouts[eventName])
-      document.querySelector(`.test-native .${eventName} .toggle`).classList.add("toggle--on")
-      timeouts[eventName] = setTimeout(function() { untoggleNativePointerEvent(eventName) }, 500)
-   }
-   function untoggleNativePointerEvent(eventName) {
-      document.querySelector(`.test-native .${eventName} .toggle`).classList.remove("toggle--on")
-   }
-
-
-   /**
-    *   jQuery UI Draggable
-    */
-
-   function setupJQueryDraggable() {
-      $("#jquery-draggable").draggable({
-         revert: true,
-         containment: "document",
-         cursor: "pointer",
-         scroll: false,
-         start: function(e) { jQueryDragEvent(e, "start") },
-         drag:  function(e) { jQueryDragEvent(e, "drag") },
-         stop:  function(e) { jQueryDragEvent(e, "stop") }
-      })
-   }
-
-   function jQueryDragEvent(e, eventName) {
-      if (preventJQuery) e.preventDefault()
-      clearTimeout(timeouts[eventName])
-      document.querySelector(`.test-jquery-ui .${eventName} .toggle`).classList.add("toggle--on")
-      timeouts[eventName] = setTimeout(function() { untoggleJQueryDragEvent(eventName) }, 500)
-   }
-   function untoggleJQueryDragEvent(eventName) {
-      document.querySelector(`.test-jquery-ui .${eventName} .toggle`).classList.remove("toggle--on")
-   }
+  // mouse
+  element.addEventListener("mousemove",  function(e) { togglePointerEvent(e, "mousemove")  })
+  element.addEventListener("mouseover",  function(e) { togglePointerEvent(e, "mouseover") })
+  element.addEventListener("mouseout",   function(e) { togglePointerEvent(e, "mouseout") })
+  element.addEventListener("mouseenter", function(e) { togglePointerEvent(e, "mouseenter") })
+  element.addEventListener("mouseleave", function(e) { togglePointerEvent(e, "mouseleave") })
+  element.addEventListener("mousedown",  function(e) { togglePointerEvent(e, "mousedown") })
+  element.addEventListener("mouseup",    function(e) { togglePointerEvent(e, "mouseup")   })
+  element.addEventListener("click",      function(e) { togglePointerEvent(e, "click")      })
+  element.addEventListener("mousewheel", function(e) { togglePointerEvent(e, "mousewheel"); e.preventDefault(); })
+  // touch
+  element.addEventListener("touchstart",       function(e) { togglePointerEvent(e, "touchstart") })
+  element.addEventListener("touchmove",        function(e) { togglePointerEvent(e, "touchmove")  })
+  element.addEventListener("touchend",         function(e) { togglePointerEvent(e, "touchend")   })
+  element.addEventListener("touchcancel",      function(e) { togglePointerEvent(e, "touchcancel") })
+  element.addEventListener("touchforcechange", function(e) { togglePointerEvent(e, "touchforcechange") })
+  // pointer
+  element.addEventListener("pointerdown",  function(e) { togglePointerEvent(e, "pointerdown") })
+  element.addEventListener("pointerup",    function(e) { togglePointerEvent(e, "pointerup") })
+  element.addEventListener("pointermove",  function(e) { togglePointerEvent(e, "pointermove") })
+  element.addEventListener("pointerover",  function(e) { togglePointerEvent(e, "pointerover") })
+  element.addEventListener("pointerout",   function(e) { togglePointerEvent(e, "pointerout") })
+  element.addEventListener("pointerenter", function(e) { togglePointerEvent(e, "pointerenter") })
+  element.addEventListener("pointerleave", function(e) { togglePointerEvent(e, "pointerleave") })
+  // gesture
+  element.addEventListener("gesturestart",  function(e) { togglePointerEvent(e, "gesturestart"); e.preventDefault(); })
+  element.addEventListener("gesturechange", function(e) { togglePointerEvent(e, "gesturechange"); e.preventDefault(); })
+  element.addEventListener("gestureend",    function(e) { togglePointerEvent(e, "gestureend"); e.preventDefault(); })
 
 
-   /**
-    *   SVG.js draggable
-    */
+  function togglePointerEvent(e, eventName) {
+    if (preventDefault) e.preventDefault()
+    clearTimeout(timeouts[eventName])
+    document.querySelector(`.${eventName} .toggle`).classList.add("toggle--on")
+    timeouts[eventName] = setTimeout(function() { untogglePointerEvent(eventName) }, 500)
 
-   var draw = SVG("svg-canvas").size('100%', '100%')
-   draw.viewbox({ x: 0, y: 0, width: 300, height: 200 })
-   const circleGroup = draw.group().move(0,100).style({cursor: 'pointer'})
-   const circle = circleGroup.circle(50).fill('rgb(134, 204, 124)')
-   circleGroup.text("Drag").font({size: 12}).cx(circle.bbox().cx).cy(circle.bbox().cy - 10)
-   circleGroup.text("Me").font({size: 12}).cx(circle.bbox().cx).cy(circle.bbox().cy + 10)
-
-   circleGroup.draggable()
-   circleGroup.on('dragstart', function(e) { SVGDragEvent(e, "dragstart") })
-   circleGroup.on('dragmove',  function(e) { SVGDragEvent(e, "dragmove") })
-   circleGroup.on('touchmove', function(e) { e.preventDefault() })
-   circleGroup.on('dragend',   function(e) { SVGDragEvent(e, "dragend") })
-
-   function SVGDragEvent(e, eventName) {
-      if (preventSVG) e.preventDefault()
-      clearTimeout(timeouts[eventName])
-      document.querySelector(`.test-svg .${eventName} .toggle`).classList.add("toggle--on")
-      timeouts[eventName] = setTimeout(function() { untoggleSVGDragEvent(eventName) }, 500)
-   }
-   function untoggleSVGDragEvent(eventName) {
-      document.querySelector(`.test-svg .${eventName} .toggle`).classList.remove("toggle--on")
-   }
+    // gestures
+    if (e.scale) document.querySelector(`.scale .value`).innerHTML = (e.scale).toFixed(1)
+    if (e.rotation) document.querySelector(`.rotation .value`).innerHTML = (e.rotation).toFixed(1)
+  }
+  function untogglePointerEvent(eventName) {
+    document.querySelector(`.${eventName} .toggle`).classList.remove("toggle--on")
+  }
 
 
-   /*
-    * preventDefault()
-    */
-   var preventNative = false
-   var preventJQuery = false
-   var preventSVG    = false
-   document.querySelector("#native-prevent-default").addEventListener('change', function() {
-      preventNative = this.checked
-   })
-   document.querySelector("#jquery-ui-prevent-default").addEventListener('change', function() {
-      preventJQuery = this.checked
-   })
-   document.querySelector("#svg-prevent-default").addEventListener('change', function() {
-      preventSVG = this.checked
-   })
-
-   /**
-    * Touch Punch and Simple Touch to Mouse Event
-    */
-
-   document.querySelector("#jquery-draggable-toggle").addEventListener('change', function() {
-      if (!this.checked) return
-
-      setupJQueryDraggable()
-   })
 
 
-   document.querySelector("#touch-punch").addEventListener('change', function() {
-      if (!this.checked) return
 
-      const script = document.createElement("script")
-      script.src = "https://www.the-smart-way.at/js/jquery.ui.touch-punch.min.js"
-      document.head.appendChild(script)
-   })
-
-   document.querySelector("#simple-touch-to-mouse").addEventListener('change', function() {
-      if (!this.checked) return
-
-      const script = document.createElement("script");
-      script.innerHTML = document.querySelector("#script-simple-touch-to-mouse").innerHTML
-      console.log(script)
-      document.body.appendChild(script)
-   })
-
+  /*
+  * preventDefault()
+  */
+  var preventDefault = false
+  document.querySelector("#prevent-default").addEventListener('change', function() {
+    preventDefault = this.checked
+  })
+  /*
+  * stopPropagation()
+  */
+  var stopPropagation = false
+  document.querySelector("#stop-propagation").addEventListener('change', function() {
+    stopPropagation = this.checked
+  })
 
 </script>
 
