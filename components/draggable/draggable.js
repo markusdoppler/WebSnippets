@@ -1,215 +1,248 @@
-const CURSOR_DRAG     = "grab";
-const CURSOR_DRAGGING = "grabbing";
+/**
+ * Bug:
+ *  [ ] element dropped on the last dropbox it hovered...
+ * 
+ * Performance
+ *  [ ] document.onmousemove per draggable -> one for all draggables
+ *  [ ] document.onmousemove per droppable -> one for all droppables
+ * 
+ * Draggable
+ *  [x] use draggable HTML attribute
+ *  [ ] implement events: dragstart, dragmove, dragend
+ * 
+ * UX
+ *  [ ] revert animation
+ *  [ ] drop animation (zoom-out zoom-in)
+ * 
+ * Accessibility
+ *  [ ] accessible dragging
+ */
 
-class DragItem extends HTMLElement {
-  constructor() {
-    super();
-    
-    this.style.willChange = "transform";
-    this.style.position = "relative";
-    this.tabIndex = 0;
-    this.pointerOffset = {};
 
-    // a11y
-    this.grabbing = false;
+
+
+// constants
+
+const
+  CURSOR_DRAG     = "grab",
+  CURSOR_DRAGGING = "grabbing";
+
+
+
+// states
+
+let dragging = false;
+let draggingElement = null;
+let dragStartOffset = DragOffset.null();
+
+let draggingOver = false;
+let draggingOverDropbox = null;
+
+let grabbing = false;
+let currentDragIndex = 0;
+let currentDropIndex = -1;
+
+
+// a11y – live helper text region
+const liveRegion = document.createElement("span");
+liveRegion.setAttribute("aria-live", "assertive");
+liveRegion.classList.add("live-region");
+liveRegion.id = "drag-operations";
+document.body.appendChild(liveRegion);
+liveRegion.innerText = "Press spacebar to start dragging. Press Left and Right arrow keys to move. Control + M to drop";
+setLiveRegionText();
+
+
+// make all elements with `draggable` attributes draggable
+const draggableItems = document.querySelectorAll("[draggable]");
+const dropBoxes      = document.querySelectorAll("[droppable]");
+
+draggableItems.forEach((draggable, d) => {
+  setupDraggable(draggable, {
+    isFirstDraggable: d == 0
+  });
+
+  // usage of custom drag events
+  // draggable.addEventListener("dragstart", (e) => {});
+  // draggable.addEventListener("dragmove", (e) => {});
+  // draggable.addEventListener("dragend", (e) => {});
+  // draggable.addEventListener("drop", (e) => {});
+})
+
+dropBoxes.forEach(dropbox => {
+  dropbox.setAttribute("aria-dropeffect", "none");
+});
+
+
+
+
+
+
+
+
+function setupDraggable(draggable, { isFirstDraggable } = {}) {
+  draggable.style.willChange = "transform";
+  draggable.style.position   = "relative";
+  draggable.tabIndex         = isFirstDraggable ? 0 : -1;
+  draggable.setAttribute("aria-describedby", "drag-operations");
+  draggable.setAttribute("aria-label", "Draggable item");
+
+  setDragOffset(draggable);
+
+  // events
+  setupEventListeners(draggable);
+
+  // a11y
+  setGrabbing({ draggable: draggable, isGrabbing: false });
+}
+
+function setDragOffset(draggable, { pointerOffset = DragOffset.null() } = {}) {
+  dragging = pointerOffset.isDefined();
+
+  draggable.style.cursor = dragging ? CURSOR_DRAGGING : CURSOR_DRAG;
+
+  if (!dragging) {
+    draggable.blur();
+    return;
   }
-  set pointerOffset({ x, y } = {}) {
-    this.isDragging = x !== undefined && y !== undefined;
-    window.isDragging = x !== undefined && y !== undefined;
-    window.draggingElement = this;
+  draggable.focus();
+  draggingElement = draggable;
 
-    this.style.cursor = this.isDragging ? CURSOR_DRAGGING : CURSOR_DRAG;
+  draggable.style.zIndex = 1000;
 
-    if (!this.isDragging) {
-      this.blur();
-      return;
-    }
-    this.focus();
-    this.style.zIndex = 1000;
+  dragStartOffset = pointerOffset;
+}
 
-    this.draggingOffset = new Vector(x, y);
-  }
-  get pointerOffset() {
-    if (this.isDragging) return { x: this.draggingOffset.x, y: this.draggingOffset.y };
-  }
-  set grabbing(isGrabbing) {
-    this.setAttribute("aria-grabbed", isGrabbing);
-    if (isGrabbing) {
-      this.classList.add("dragging");
-    } else {
-      this.classList.remove("dragging");
-    }
-  }
-  get grabbing() {
-    return this.getAttribute("aria-grabbed") == "true";
-  }
-  connectedCallback() {
-    // if ('PointerEvent' in window) {
-    //   pointer
-    //   this.addEventListener("pointerdown", this.dragStartHandler);
-    //   document.addEventListener("pointermove", (e) => {
-    //     this.dragMoveHandler(e);
-    //   });
-    //   this.addEventListener("pointerup", this.dragEndHandler);
-    // } else {
-    // }
 
+
+if ('PointerEvent' in window) {
+  document.addEventListener("pointermove", dragMove);
+} else {
+  document.addEventListener("mousemove", dragMove);
+  document.addEventListener("touchmove", dragMove);
+}
+
+function setupEventListeners(draggable) {
+  if ('PointerEvent' in window) {
+    // pointer
+    draggable.addEventListener("pointerdown", dragStart);
+    draggable.addEventListener("pointerup", dragEnd);
+  } else {
     // mouse
-    this.addEventListener("mousedown", this.dragStartHandler);
-    document.addEventListener("mousemove", (e) => {
-      this.dragMoveHandler(e);
-    });
-    this.addEventListener("mouseup", this.dragEndHandler);
+    draggable.addEventListener("mousedown", dragStart);
+    draggable.addEventListener("mouseup", dragEnd);
 
     // touch
-    this.addEventListener("touchstart", this.dragStartHandler);
-    document.addEventListener("touchmove", (e) => {
-      this.dragMoveHandler(e);
-    });
-    this.addEventListener("touchend", this.dragEndHandler);
-
-    // keyboard events
-    this.addEventListener("keydown", this.keyDown);
-
-    // focus
-    this.addEventListener("focus", () => { console.log("focus"); });
-    this.addEventListener("blur", () => { console.log("blur"); });
-
+    draggable.addEventListener("touchstart", dragStart);
+    draggable.addEventListener("touchend", dragEnd);
   }
-  disconnectedCallback() {
-    // remove all event listeners
-  }
-  dragStartHandler(e) { e.preventDefault(); this.dragStart(e); }
-  dragMoveHandler(e) { e.preventDefault(); this.dragMove(e); }
-  dragEndHandler(e) { e.preventDefault(); this.dragEnd(e); }
-  dragStart(e) {
-    this.style.setProperty("transition", "none");
 
-    this.pointerOffset = {
-      x: (e.targetTouches ? e.targetTouches[0] : e).clientX, 
-      y: (e.targetTouches ? e.targetTouches[0] : e).clientY
+  // keyboard events
+  draggable.addEventListener("keydown", keyDown);
+
+  // focus
+  // draggable.addEventListener("focus", () => { console.log("focus"); });
+  // draggable.addEventListener("blur", () => { console.log("blur"); });
+}
+
+function dragStart(e) {
+  e.preventDefault();
+  this.style.setProperty("transition", "none");
+  this.style.setProperty("transform", `translate(${0}px, ${0}px)`);
+
+  setDragOffset(this, { pointerOffset: DragOffset.offsetFromEvent(e) });
+}
+
+function dragEnd(e) {
+  e.preventDefault();
+  setDragOffset(this);
+
+
+  const acceptsElement = draggingOver && draggingOverDropbox.getAttribute("data-match") == draggingElement.getAttribute("data-match");
+
+  if (acceptsElement) {
+    const draggableTransformBeforeDrop = this.getBoundingClientRect();
+    draggingOverDropbox.appendChild(this);
+    this.style.setProperty("transform", `translate(${0}px, ${0}px)`);
+    const draggableTransformAfterDrop = this.getBoundingClientRect();
+
+    const adaptedTranslation = {
+      x: draggableTransformBeforeDrop.x - draggableTransformAfterDrop.x, 
+      y: draggableTransformBeforeDrop.y - draggableTransformAfterDrop.y
     };
-  }
-  dragMove(e) {
-    if (!this.isDragging) return;
+    console.log(draggableTransformBeforeDrop, draggableTransformAfterDrop, adaptedTranslation);
 
-    const pointerPosition = 
-      new Vector(
-        (e.targetTouches ? e.targetTouches[0] : e).clientX,
-        (e.targetTouches ? e.targetTouches[0] : e).clientY
-      );
-    
-    const translation = pointerPosition.subtract(this.draggingOffset);
-    this.style.setProperty("transform", `translate(${translation.x}px, ${translation.y}px)`);
+    this.style.setProperty("transform", `translate(${adaptedTranslation.x}px, ${adaptedTranslation.y}px)`);
 
-
-    // highlight potential droppables
-
-
-  }
-  dragEnd(e) {
-    this.pointerOffset = {};
-
-    if (this.dropBox) {
-      this.dropBox.appendChild(this);
+    setTimeout(() => {
+      this.style.setProperty("transition", "transform 0.2s linear");
       this.style.setProperty("transform", `translate(${0}px, ${0}px)`);
-    } else {
-      // revert back
-      this.style.setProperty("transition", "transform 0.3s cubic-bezier(0.5,0.5,0.66,1.33)");
-      setTimeout(() => {
-        this.style.setProperty("transform", `translate(${0}px, ${0}px)`);
-      }, 0);
 
-      this.addEventListener("transitionend", () => {
-        this.style.zIndex = 0;
-      }, { once: true });
-    }
+    }, 0);
 
+    this.addEventListener("transitionend", () => {
+      this.style.zIndex = 0;
+      this.style.setProperty("transition", "none");
+      this.style.setProperty("animation", `drop 0.4s`);
+
+      this.addEventListener("animationend", () => {
+        this.style.setProperty("animation", `none`);
+      }, { once: true });  
+    }, { once: true });
+
+  // revert back
+  } else {
+    this.style.setProperty("transition", "transform 0.4s cubic-bezier(0.5,0.5,0.66,1.33)");
+    setTimeout(() => {
+      this.style.setProperty("transform", `translate(${0}px, ${0}px)`);
+    }, 0);
+
+    this.addEventListener("transitionend", () => {
+      this.style.zIndex = 0;
+      this.style.setProperty("transition", "none");
+    }, { once: true });
   }
-  keyDown(e) {
-    switch (e.code) {
-      case "Space":
-        e.preventDefault();
-        this.grabbing = !this.grabbing;
-        break;
-      case "ArrowLeft":
-        e.preventDefault();
-        
-        break;
-      case "ArrowRight":
-        e.preventDefault();
-        
-        break;
-      case "Enter":
-        e.preventDefault();
-        break;
-      case "Tab":
-        console.log("tabbing");
-        break;
-      default:
-        break;
-    }
-  }
+
 }
-customElements.define("drag-item", DragItem);
 
+function dragMove(e) {
+  e.preventDefault();
+  if (!dragging) return;
 
+  const dragMoveOffset = DragOffset.offsetFromEvent(e);
+  const translation = dragMoveOffset.subtract(dragStartOffset);
 
+  draggingElement.style.setProperty("transform", `translate(${translation.x}px, ${translation.y}px)`);
 
-
-
-class DropBox extends HTMLElement {
-  constructor() {
-    super();
-    
-    this.setAttribute("aria-dropeffect", "none");
+  // highlight potential droppables
+  draggingOver = false;
+  for (let dropbox of dropBoxes) {
+    const draddingOverThisDropbox = checkDraggingOverDropbox(e, dropbox);
+    if (draddingOverThisDropbox) draggingOver = true;
   }
-  connectedCallback() {
-    document.addEventListener("mousemove", (e) => {
-      if (!window.isDragging) return;
-
-      const point = {
-        x: (e.targetTouches ? e.targetTouches[0] : e).clientX, 
-        y: (e.targetTouches ? e.targetTouches[0] : e).clientY
-      };
-      const rect = this.getBoundingClientRect();
-
-      const ondragover = isInside(point, rect);
-      // console.log(this.getAttribute("match"), "dragover", ondragover);
-      if (ondragover) {
-        this.setAttribute("dragover", true);
-        window.draggingElement.dropBox = this;
-      } else {
-        this.removeAttribute("dragover", true);
-      }
-    });
-  }
-  disconnectedCallback() {
-
-  }
+  if (!draggingOver) draggingOverDropbox = null;
 }
-customElements.define("drop-box", DropBox);
 
 
 
+function checkDraggingOverDropbox(e, dropbox) {
+  if (!dragging) return;
 
+  const point = DragOffset.offsetFromEvent(e);
+  const rect = dropbox.getBoundingClientRect();
+  const onDragOver = isPointInsideRect(point, rect);
+  
+  if (onDragOver) {
+    dropbox.setAttribute("dragover", true);
+    draggingOverDropbox = dropbox;
+  } else {
+    dropbox.removeAttribute("dragover");
+  }
 
+  return onDragOver;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function isInside(point, rect) {
+function isPointInsideRect(point, rect) {
   return ((point.x > rect.x)
        && (point.x < rect.x + rect.width)
        && (point.y > rect.y)
@@ -217,26 +250,139 @@ function isInside(point, rect) {
 }
 
 
-function ElementGeometry(element) {
-  
-  element.offsetLeft
-  element.offsetTop
-  element.offsetWidth
-  element.offsetHeight
-
-  element.getBoundingClientRect()
-
-  // set positioning
 
 
+
+
+// Accessible Dragging
+
+
+function setLiveRegionText(text) {
+  if (text) {
+    liveRegion.innerText = text;
+  } else {
+    liveRegion.innerText = "Press spacebar to start dragging. Press Left and Right arrow keys to move. Control + M to drop";
+  }
 }
 
-function EventGeometry(event) {
-  
-  e.clientX
-  e.clientY
-
-  (e.targetTouches ? e.targetTouches[0] : e).clientX
-  (e.targetTouches ? e.targetTouches[0] : e).clientY
-
+function keyDown(e) {
+  console.log(e.code);
+  switch (e.code) {
+    case "Space":
+      console.log("Space")
+      e.preventDefault();
+      const currentlyGrabbing = getGrabbing({ draggable: this });
+      if (!currentlyGrabbing) {
+        setGrabbing({ draggable: this, isGrabbing: true });
+      } else {
+        dropDraggable();
+      }
+      break;
+    case "ArrowLeft":
+      e.preventDefault();
+      if (grabbing) changeDropbox(-1);
+      else roveTabIndex(-1);
+      break;
+    case "ArrowRight":
+      e.preventDefault();
+      if (grabbing) changeDropbox(+1);
+      else roveTabIndex(+1);
+      break;
+    case "Enter":
+      e.preventDefault();
+      break;
+    case "Escape":
+      e.preventDefault();
+      setGrabbing({ draggable: this, isGrabbing: false });
+      break;  
+    case "Tab":
+      console.log("tabbing");
+      break;
+    default:
+      break;
+  }
 }
+
+function setGrabbing({ draggable, isGrabbing } = {}) {
+  grabbing = isGrabbing;
+  draggingElement = draggable;
+
+  draggable.setAttribute("aria-grabbed", isGrabbing);
+  if (isGrabbing) {
+    setLiveRegionText("Dragging item. Press arrows to move. Spacebar to stop dragging.");
+    draggable.classList.add("dragging");
+    dragStartOffset = DragOffset.offsetFromRect(draggable.getBoundingClientRect());
+    setAcceptingDropboxes();
+  } else {
+    setLiveRegionText();
+    currentDropIndex = -1;
+    draggable.classList.remove("dragging");
+    draggable.style.setProperty("transform", `translate(${0}px, ${0}px)`);
+    dragStartOffset = DragOffset.null();
+    unstyleDropboxes();
+    resetAcceptingDropboxes();
+    draggingOverDropbox = null;
+  }
+}
+function getGrabbing({ draggable } = {}) {
+  return draggable.getAttribute("aria-grabbed") == "true";
+}
+
+
+function roveTabIndex(direction) {
+  currentDragIndex += direction;
+  if (currentDragIndex < 0) currentDragIndex = draggableItems.length - 1;
+  if (currentDragIndex == draggableItems.length) currentDragIndex = 0;
+
+  draggableItems.forEach((draggable, d) => {
+    draggable.tabIndex = currentDragIndex == d ? 0 : -1;
+    if (draggable.tabIndex == 0) draggable.focus();
+  });
+}
+
+
+function changeDropbox(direction) {
+  if (currentDropIndex == -1) {
+    currentDropIndex = 0;
+  } else {
+    currentDropIndex += direction;
+    if (currentDropIndex < 0) currentDropIndex = dropBoxes.length - 1;
+    if (currentDropIndex == dropBoxes.length) currentDropIndex = 0;
+  }
+
+  unstyleDropboxes();
+  helpDraggingOverDropbox(draggingElement, dropBoxes[currentDropIndex]);
+  draggingOverDropbox = dropBoxes[currentDropIndex];
+}
+
+function dropDraggable() {
+  setLiveRegionText("Dropped draggable.");
+  draggingOverDropbox.appendChild(draggingElement);
+  setGrabbing({ draggable: draggingElement, isGrabbing: false });
+}
+
+function unstyleDropboxes() {
+  for (let dropbox of dropBoxes) { dropbox.style.background = "var(--color-drop-background)"; }
+}
+
+function setAcceptingDropboxes() {
+  for (let dropbox of dropBoxes) { dropbox.setAttribute("aria-dropeffect", "move"); }
+}
+function resetAcceptingDropboxes() {
+  for (let dropbox of dropBoxes) { dropbox.setAttribute("aria-dropeffect", "none"); }
+}
+
+function helpDraggingOverDropbox(draggable, dropbox) {
+  dropbox.style.background = "var(--color-drop-background-hover)";
+
+  const dropboxRect        = DragOffset.offsetFromRect(dropbox.getBoundingClientRect())
+  const adaptedTranslation = dropboxRect.subtract(dragStartOffset);
+
+  // move draggable to dropbox
+  draggable.style.setProperty("transform", `translate(${adaptedTranslation.x + 20}px, ${adaptedTranslation.y - 20}px)`);
+}
+
+
+
+
+

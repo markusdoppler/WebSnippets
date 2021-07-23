@@ -8,23 +8,27 @@
   <link rel="stylesheet" href="draggable.css">
 </head>
 <body>
-  <h1>Draggable Component</h1>
+  <h1>Draggables</h1>
   <div>
     <h2>Items</h2>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="fruit" class="item"><span>🍏 Apple</span></drag-item>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="fruit" class="item"><span>🍊 Orange</span></drag-item>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="fruit" class="item"><span>🍓 Strawberry</span></drag-item>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="vegetable" class="item"><span>🥕 Carrot</span></drag-item>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="vegetable" class="item"><span>🌶 Chili</span></drag-item>
-    <drag-item draggable="true" kind="veggies-or-fruits" match="vegetable" class="item"><span>🌽 Corn</span></drag-item>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="fruit" class="item"><span>🍏 Apple</span></div>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="fruit" class="item"><span>🍊 Orange</span></div>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="fruit" class="item"><span>🍓 Strawberry</span></div>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="vegetable" class="item"><span>🥕 Carrot</span></div>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="vegetable" class="item"><span>🌶 Chili</span></div>
+    <div draggable="true" data-kind="veggies-or-fruits" data-match="vegetable" class="item"><span>🌽 Corn</span></div>
   </div>
   <div>
     <h2>Fruits</h2>
-    <drop-box kind="veggies-or-fruits" match="fruit" class="drop"></drop-box>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="fruit" class="drop"></div>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="fruit" class="drop"></div>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="fruit" class="drop"></div>
   </div>
   <div>
     <h2>Veggies</h2>
-    <drop-box kind="veggies-or-fruits" match="vegetable" class="drop"></drop-box>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="vegetable" class="drop"></div>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="vegetable" class="drop"></div>
+    <div droppable="none" data-kind="veggies-or-fruits" data-match="vegetable" class="drop"></div>
   </div>
 
   <script src="utility.js" defer></script>
