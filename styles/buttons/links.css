@@ -270,6 +270,54 @@ li {
 }
 
 
+/*   Fluid Shadow Button    */
+.fluid-shadow-button {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 0.5em 1em;
+  border: none;
+  background: hsl(206, 10%, 15%);
+  color: hsl(206, 10%, 85%);
+  border-radius: 5px;
+  outline-color: hsl(206, 5%, 20%);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1ch;
+  
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  cursor: pointer;
+
+  --highlight-size: 0;
+  box-shadow: 0 1px hsl(206, 5%, 30%),
+              0 0 0 var(--highlight-size) hsl(206, 5%, 60%);
+  text-shadow: 0 1px 0 var(--surface-2);
+}
+.fluid-shadow-button:disabled {
+  background-color: hsl(206, 5%, 50%);
+  color: hsl(206, 10%, 85%);
+  cursor: not-allowed;
+}
+.fluid-shadow-button:not(:active):focus-visible { position: relative; z-index: 1; --highlight-size: 0.5em; outline-offset: 0.5em; }
+.fluid-shadow-button:active { --highlight-size: 0.25em; outline-offset: 0.25em; }
+@media (hover: hover) {
+  .fluid-shadow-button:not(:active, :disabled):hover { position: relative; z-index: 1; --highlight-size: 0.5em; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fluid-shadow-button { transition: box-shadow 0.2s ease, outline-offset 0.2s ease; }
+  .fluid-shadow-button:focus-visible { transition: outline-offset 75ms ease-out; }
+  .fluid-shadow-button:not(:active):focus-visible { transition-duration: 250ms; }
+}
+
+
 /* Ripple Button */
 .ripple-button {
   --click-x: 0px;

@@ -15,6 +15,46 @@
 
 			<colour-mode-selector @selected="changeMode"></colour-mode-selector>
 
+			<h2>Software Colours</h2>
+			<div class="colour-strip">
+				<div class="colours">
+					<colour-item :mode="mode" colour-code="#edf1f2" @copy="copyColourCode">software-1</colour-item>
+					<colour-item :mode="mode" colour-code="#b7c3d7" @copy="copyColourCode">secondary</colour-item>
+					<colour-item :mode="mode" colour-code="#93a3bd" @copy="copyColourCode">primary</colour-item>
+					<colour-item :mode="mode" colour-code="#7a92b8" @copy="copyColourCode">primary</colour-item>
+					<colour-item :mode="mode" colour-code="#05061f" @copy="copyColourCode">software-2</colour-item>
+				</div>
+			</div>
+
+
+			<h2>Forest Greens</h2>
+			<div class="colour-strip">
+				<div class="colours">
+					<colour-item :mode="mode" colour-code="#e2e8de" @copy="copyColourCode">forest-1</colour-item>
+					<colour-item :mode="mode" colour-code="#7d8f3d" @copy="copyColourCode">primary</colour-item>
+					<colour-item :mode="mode" colour-code="#737154" @copy="copyColourCode">tertiary</colour-item>
+					<colour-item :mode="mode" colour-code="#697368" @copy="copyColourCode">forest-2</colour-item>
+					<colour-item :mode="mode" colour-code="#5D6D63" @copy="copyColourCode">forest-4</colour-item>
+					<colour-item :mode="mode" colour-code="#515837" @copy="copyColourCode">secondary</colour-item>
+					<colour-item :mode="mode" colour-code="#4e5440" @copy="copyColourCode">forest-3</colour-item>
+					<colour-item :mode="mode" colour-code="#1c240f" @copy="copyColourCode">primary</colour-item>
+				</div>
+			</div>
+
+
+			<h2>Vegetable Colours</h2>
+			<div class="colour-strip">
+				<div class="colours">
+					<colour-item :mode="mode" colour-code="#ab3812" @copy="copyColourCode">primary</colour-item>
+					<colour-item :mode="mode" colour-code="#cf3a26" @copy="copyColourCode">secondary</colour-item>
+					<colour-item :mode="mode" colour-code="#8c313c" @copy="copyColourCode">primary</colour-item>
+					<colour-item :mode="mode" colour-code="#719e51" @copy="copyColourCode">secondary</colour-item>
+					<colour-item :mode="mode" colour-code="#e3863b" @copy="copyColourCode">tertiary</colour-item>
+					<colour-item :mode="mode" colour-code="#a98823" @copy="copyColourCode">primary</colour-item>
+				</div>
+			</div>
+
+
 			<h2>Material Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
@@ -57,7 +97,7 @@
 			<h2>Flower Colours</h2>
 			<div class="colour-strip">
 				<div class="colours">
-					<colour-item :mode="mode" colour-code="" @copy="copyColourCode"></colour-item>
+					<colour-item :mode="mode" colour-code="#c199bb" @copy="copyColourCode">fuchsia</colour-item>
 				</div>
 			</div>
 
@@ -109,7 +149,7 @@
 			</div>
 		</script>
 
-		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="../../assets/vue.js"></script>
 		<script src="colours.js" type="text/javascript"></script>
 	</body>
 </html>
