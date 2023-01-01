@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dynamic DOM</title>
+   <style>
+      section {
+         width: 100%;
+         height: 100vh;
+      }
+      [data-ref="view-1"] { background-color: navy; color: white; }
+      [data-ref="view-2"] { background-color: aliceblue; color: navy; }
+   </style>
+</head>
+<body>
+   <section data-ref="view-1">
+      
+   </section>
+   <section data-ref="view-2">
+
+   </section>
+
+   <word-element>English</word-element>
+
+   <button onclick="changeLanguage('English')">English</button>
+   <button onclick="changeLanguage('Deutsch')">Deutsch</button>
+   <button onclick="changeLanguage('Français')">Français</button>
+
+   <script src="dynamic.js"></script>
+</body>
+</html>

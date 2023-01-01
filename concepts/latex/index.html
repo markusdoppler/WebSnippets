@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Markus Doppler | LaTeX</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="latex.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+		<style>
+	    latex-js {
+	      display: inline-block;
+	      width: 40%;
+	      border: 1px solid red;
+	      margin-right: 2em;
+	    }
+	  </style>
+	</head>
+	<body>
+    <section class="hero">
+			<h1>Compiling LaTeX</h1>
+
+			<p>
+				using <a href="https://github.com/michael-brade/LaTeX.js">LaTeX.js</a>
+			</p>
+
+			<object id="equation"></object>
+
+			<latex-js baseURL="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/">
+				\documentclass{article}
+
+				\begin{document}
+					Hello World.
+
+					% $$\frac{\partial L}{\partial q} - \frac{\text{d}}{\text{d}t} \frac{\partial L}{\partial \dot{q}} = 0$$
+
+				\end{document}
+			</latex-js>
+
+			<latex-js hyphenate="false">
+		    Another.
+		  </latex-js>
+
+    </section>
+
+
+
+
+
+		<!-- <script src="node_modules/latex.js/dist/latex.min.js"></script> -->
+		<script type="module">
+			import latexjs from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.component.esm.js"
+			customElements.define('latex-js', latexjs)
+		</script>
+
+		<script src="https://cdn.jsdelivr.net/npm/latex.js@0.11.1/dist/latex.min.js"></script>
+		<script src="latex.js"></script>
+	</body>
+</html>

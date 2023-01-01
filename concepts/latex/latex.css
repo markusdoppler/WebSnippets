@@ -1,0 +1,10 @@
+body {
+  background: #ecf0f1;
+  color: #050620;
+  transition: all 0.3s ease-out;
+}
+
+p, li, a {
+  font-size: 18px;
+  text-decoration: none;
+}

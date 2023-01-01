@@ -1,0 +1,148 @@
+body {
+  /* background: #ecf0f1;
+  color: #050620; */
+  background: #050620;
+  background: -webkit-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:    -moz-radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  background:         radial-gradient(rgba(5,6,32,0.79), rgba(5,6,32,0.91));
+  color: #ecf0f1;
+  border-bottom: none;
+  transition: all 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+p, li, a {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.hero {
+  max-width: 700px;
+  min-height: 1000px;
+}
+
+
+
+
+.cube-container {
+  width: 250px;
+  height: 213px;
+  margin: 20px auto;
+  /* background-color: #EEE; */
+}
+.cube {
+  width: 112px;
+  height: 112px;
+  top: 50px;
+  margin: auto;
+  position: relative;
+
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+     -moz-transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+          transform: rotateX(-22deg) rotateY(-38deg) rotateZ(0deg);
+  -webkit-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+}
+.cube-side {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  float: left;
+  overflow: hidden;
+  opacity: 0.85;
+
+  -webkit-transition: all 0.5s ease-in-out;
+          transition: all 0.5s ease-in-out;
+}
+.cube-side:nth-of-type(1), #side1 {
+  -webkit-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(56px);
+          transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #FFF;
+}
+.cube-side:nth-of-type(2), #side2 {
+  -webkit-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+          transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #ffaf1c;
+}
+.cube-side:nth-of-type(3), #side3 {
+  -webkit-transform: translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: translateX(0px) translateY(0px) translateZ(56px);
+          transform: translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #58d568;
+}
+.cube-side:nth-of-type(4), #side4 {
+  -webkit-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(56px);
+          transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #ed3030;
+}
+.cube-side:nth-of-type(5), #side5 {
+  -webkit-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(56px);
+          transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #1c5ffe;
+}
+.cube-side:nth-of-type(6), #side6 {
+  -webkit-transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+     -moz-transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+          transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(56px);
+  background-color: #f2f215;
+}
+
+
+
+
+
+
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.info-description {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.scroll-info {
+  padding-left: 15px;
+  padding-bottom: 5px;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.screen-info {
+  padding-bottom: 5px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.mouse-info {
+  padding-right: 15px;
+  padding-bottom: 5px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#mouseXY {
+  text-align: right;
+}

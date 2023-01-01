@@ -1,0 +1,56 @@
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: inherit;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  width: 30vw;
+  height: 30vw;
+
+  border: none;
+  border-radius: 50%;
+  background-color: YellowGreen;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 1s all ease;
+  cursor: pointer;
+  outline: none;
+}
+button:hover {
+  background-color: SeaGreen;
+}
+button span {
+  margin-left: 10px;
+}
+
+
+
+:-webkit-full-screen {
+  background-color: yellow;
+  border: 5px solid Thistle;
+}
+:-moz-full-screen {
+  background-color: yellow;
+  border: 5px solid Thistle;
+}
+:-ms-fullscreen {
+  background-color: yellow;
+  border: 5px solid Thistle;
+}
+:fullscreen {
+  background-color: yellow;
+  border: 5px solid Thistle;
+}

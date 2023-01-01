@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>Markus Doppler | Github API Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="github.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+		<h1 class="heading">Github Profiles</h1>
+		<section id="github-profiles">
+
+			<github-user-card username="markusdoppler"></github-user-card>
+			<github-user-card username="yyx990803"></github-user-card>
+			<github-user-card username="vuejs"></github-user-card>
+
+		</section>
+
+		<script type="text/x-template" id="github-user-card-template">
+			<div class="ui card">
+				<div class="image">
+					<img :src="data.avatar_url">
+				</div>
+				<div class="content">
+					<a href="" class="header">{{data.name}}</a>
+					<div class="meta">
+						<span class="date">Joined in {{userYearJoined}}</span>
+					</div>
+					<div class="description">
+						{{firstName}} lives in {{data.location}}.
+					</div>
+				</div>
+				<div class="extra-content">
+					<i class="user icon">👥</i>
+					{{followerCount}} Friends
+				</div>
+			</div>
+		</script>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="github.js" type="text/javascript"></script>
+	</body>
+</html>

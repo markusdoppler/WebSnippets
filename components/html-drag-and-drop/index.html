@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>HTML Drag and Drop</title>
+   <style>
+      body {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+      }
+      .item {
+         width: 3em;
+         height: 3em;
+         background-color: navy;
+      }
+      .dropzone {
+         width:  6em;
+         height: 6em;
+         border: 6px dashed aliceblue;
+      }
+      .droparea:-moz-drag-over {
+         outline: 1px solid black;
+      }
+   </style>
+</head>
+<body>
+   <div class="item" draggable="true" data-id="1">A</div>
+   <div class="dropzone">B</div>
+
+   https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations
+   https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API
+
+   <script>
+      const item     = document.querySelector(".item")
+      const dropzone = document.querySelector(".dropzone")
+
+      item.addEventListener("dragstart", onDragStart)
+      item.addEventListener("dragend", onDragEnd)
+      item.addEventListener("drag", onDrag)
+
+      function onDragStart(event) {
+         event.dataTransfer.dropEffect = "move"
+         event.dataTransfer.effectAllowed = "move"
+         // event.dataTransfer.effectAllowed = "copy"
+         // event.dataTransfer.effectAllowed = "link"
+         // event.dataTransfer.effectAllowed = "copyMove", "copyLink", "linkMove"
+         // event.dataTransfer.effectAllowed = "all" // default
+
+         event.dataTransfer.setData('itemID', item.getAttribute("data-id"))
+         event.dataTransfer.setData("text/plain", event.target.id);
+         event.dataTransfer.setData("text/html", event.target.outerHTML);
+         event.dataTransfer.setData("text/uri-list", event.target.ownerDocument.location.href);
+
+         // custom drag image
+         event.dataTransfer.setDragImage(image, xOffset, yOffset);
+
+         console.log(item);
+      }
+      function onDragEnd(event) {
+         
+      }
+      function onDrag(event) {
+         
+      }
+
+      dropzone.addEventListener("dragenter", onDragEnter)
+      dropzone.addEventListener("dragleave", onDragLeave)
+      dropzone.addEventListener("dragover", onDragOver)
+      dropzone.addEventListener("drop", onDrop)
+      function onDragEnter(event) {
+         event.preventDefault()
+      }
+      function onDragLeave(event) {
+         event.preventDefault()
+      }
+      function onDragOver(event) {
+         event.preventDefault()
+
+         const isLink = event.dataTransfer.types.includes("text/uri-list")
+         console.log("types", event.dataTransfer.types)
+      }
+      function onDrop(event) {
+         event.preventDefault()
+         event.dataTransfer.getData('itemID')
+
+         // move item from list
+         // dropzone.innerHTML = item.innerHTML;
+         dropzone.appendChild(item);
+
+         console.log(dropzone);
+      }
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Markus Doppler | Gallery Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="image.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+		<h1>Image Loading</h1>
+
+		<section id="image-loading-container">
+			<div class="image-view">
+				<loading-image v-if="loaded" :image-data="imageDataList" />
+			</div>
+
+			<div class="image-details">
+				<h2>Details</h2>
+				<ul>
+					<loading-image-status v-for="imgData in imageDataList" :image-data="imgData" :key="imgData.src"></loading-image-status>
+				</ul>
+			</div>
+		</section>
+
+		<script type="text/x-template" id="loading-image-template">
+			<img v-if="image.loaded" :src="image.src" :alt="image.alt" />
+		</script>
+
+		<script src="../assets/vue.js"></script>
+		<script src="image.js" type="text/javascript"></script>
+	</body>
+</html>

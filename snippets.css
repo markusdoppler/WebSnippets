@@ -79,10 +79,14 @@ h1 {
   padding-bottom: 40px;
 }
 h2 {
-  text-align: center;
   font-size: 1.8em;
   padding-top: 40px;
   padding-bottom: 40px;
+}
+h3 {
+  font-size: 1.3em;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .snippets h2 {
@@ -97,6 +101,13 @@ ul {
   list-style: none;
 }
 
+.snippets main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5em;
+  margin-bottom: 50vh;
+}
+
 .snippets ul {
 	display: flex;
 	flex-direction: column;
@@ -109,7 +120,7 @@ ul {
 }
 
 .snippets a {
-	margin: 0.5em 1em;
+	margin: 0.5em 0;
 	color: #ecf0f1;
 	text-decoration: none;
 	transition: all 0.3s ease-out;

@@ -1,0 +1,70 @@
+body {
+  background: #ecf0f1;
+  color: #050620;
+  transition: all 0.3s ease-out;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    ". header   ."
+    "main   main     main  ";
+  /*"footer footer   footer";*/
+  height: 100%;
+  width: 100%;
+}
+
+.heading {
+  grid-area: header;
+}
+#github-profiles {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  margin: 5px;
+  width: 200px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+  background-color: rgba(255,255,255,0.35);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+}
+
+.image img {
+  width: 200px;
+  height: 200px;
+}
+
+.header {
+  padding: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  font-size: 1.1em;
+}
+
+.meta {
+  padding: 0 10px;
+  color: gray;
+  font-size: 0.8em;
+}
+.description {
+  padding: 10px;
+  color: black;
+  font-size: 0.8em;
+}
+.extra-content {
+  border-top: 0.5px solid gray;
+  padding: 10px;
+  color: gray;
+  font-size: 0.8em;
+}

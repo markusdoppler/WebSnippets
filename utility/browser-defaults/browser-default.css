@@ -1,0 +1,40 @@
+h1 { /* font-size: 45px; margin-block: 26px */
+   font-size: 2em;
+   margin-block: 0.67em 0;
+}
+:is(section, article, aside) h1 { /* font-size: 34px; margin-block: 24px */
+   font-size: 1.5em;
+   margin: 0.83em 0;
+}
+h2 { /* font-size: 34px; margin-block: 24px */
+   font-size: 1.5em;
+   margin: 0.83em 0;
+}
+h3 { /* font-size: 27px; margin-block: 22px */
+   font-size: 1.17em;
+   margin: 1em 0;
+}
+h4 { /* font-size: 23px; margin-block: 26px */
+   font-size: 1em;
+   margin: 1.33em 0;
+}
+h5 { /* font-size: 18px; margin-block: 27px */
+   font-size: 0.83em;
+   margin: 1.67em 0;
+}
+h6 { /* font-size: 15px; margin-block: 30px */
+   font-size: 0.67em;
+   margin: 2.33em 0;
+}
+p { /* font-size: 23px; margin-block: 19px */
+   margin: 1em 0;
+   line-height: 1.25;
+}
+
+blockquote {
+   margin: 1em 40px;
+}
+ul, ol {
+   margin: 1em 0;
+   padding-left: 40px;
+}

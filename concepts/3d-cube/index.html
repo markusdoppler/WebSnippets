@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Markus Doppler | Mouse Repell Snippet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+    <link href="../snippets.css" rel="stylesheet" />
+    <link href="threed.css" rel="stylesheet" />
+		<link href="../assets/peacock-favicon.png" rel="icon">
+	</head>
+	<body>
+		<h1>3D Scroll</h1>
+
+		<section class="hero" id="scroll-room" v-scroll="updateWindowScroll">
+			<rotating-cube></rotating-cube>
+		</section>
+
+		<footer>
+			<div class="scroll-info">
+				<span class="info-description">scroll</span>
+				<div id="scrollXY">↔︎ 0 / ↕︎ 0</div>
+			</div>
+			<div class="screen-info">
+				<span class="info-description">window size</span>
+				<div id="screenHW">(width: 0, height: 0)</div>
+			</div>
+			<div class="mouse-info">
+				<span class="info-description">mouse movement</span>
+				<div id="mouseXY">in window: (0, 0)<br>in document: (0, 0)</div>
+			</div>
+		</footer>
+
+		<script type="text/x-template" id="rotating-cube-template">
+			<div class="cube-container"  @click="turnRight()">
+				<div class="cube" :style="{transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg) rotateZ(${rotation.z}deg) translateX(0) translateY(0) translateZ(0)`}">
+					<div class="cube-side"></div>
+					<div class="cube-side"></div>
+					<div class="cube-side"></div>
+					<div class="cube-side"></div>
+					<div class="cube-side"></div>
+					<div class="cube-side"></div>
+				</div>
+			</div>
+		</script>
+
+		<!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+		<script src="../assets/vue.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+		<script src="threed.js" type="text/javascript"></script>
+	</body>
+</html>
