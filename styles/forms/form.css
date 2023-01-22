@@ -17,7 +17,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid white; */
+  /* border: 1px solid white;*/
+  min-height: 100vh;
 }
 
 .overview-form {
@@ -51,6 +52,45 @@ input[type=text]:focus {
 }
 
 
+/* Placeholder label */
+.placeholder-label {
+  flex-grow: 1;
+  position: relative;
+  margin-bottom: 0.5ch;
+  margin-right: 0.5ch;
+}
+.placeholder-label > input {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: var(--br);
+  border: 1px solid var(--graylight);
+  font-size: 1em;
+  font-family: var(--font_main);
+  transition: border 0.3s ease;
+}
+.placeholder-label > input:hover {
+  border: 1px solid var(--gray);
+}
+.placeholder-label > label {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 0.2em;
+  color: var(--gray);
+  background-color: white;
+  transform: translate(0.5em, -45%) rotate(-1.5deg) scale(0.7);
+  transform-origin: top left;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .placeholder-label > label {
+    transition: transform 0.3s ease-in-out;
+  }
+}
+.placeholder-label > input:not(:focus)[data-value=""] + label {
+  transform: translate(0.5em, 0.5em) rotate(0deg) scale(1);
+}
 
 /* Contact Form */
 .contact-form {
